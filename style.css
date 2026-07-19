@@ -1,5 +1,14 @@
 @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap%27);
 
+
+html, body {
+  overflow-y: auto;
+  p {
+  text-align: center;
+}
+}
+
+
 *{
     margin: 0;
     padding: 0;
@@ -11,7 +20,7 @@
 }
 
 html{
-    font-size: 62.5%;
+    font-size: 80%;
 }
 
 body{
@@ -20,6 +29,10 @@ body{
     overflow-x: hidden;
     background-color: black;
     color: white;
+    h2 {
+  text-align: center;
+}
+
 }
 
 header{
@@ -127,7 +140,7 @@ span{
 }
 
 .home-content p{
-    font-size: 1.6rem;
+    font-size: 1.4rem;
 }
 
 .home-img{
@@ -238,7 +251,7 @@ span{
         content: "Pikachu";
     }
     81%, 100%{
-        content: "greninja";
+        content: "Athlete";
     }
 }
 
@@ -267,4 +280,5 @@ span{
         margin-top: 4rem;
 
     }
+    
 }

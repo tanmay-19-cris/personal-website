@@ -17,7 +17,7 @@
       <nav>
         <a href="index.html" class="active"> Home</a>
         <a href="about.html">About</a>
-        <a href="skills.html">Skills</a>
+        <a href="projects.html">Projects</a>
         <a href="education.html">Educations</a>
         <a href="experience.html">Experience</a>
         <a href="mailto:tanmayshet2010@gmail.com">Contact</a>
@@ -30,14 +30,56 @@
       <div class="home-content">
         <h1>Hi, it's <span>Thunder</span></h1>
         <h3 class="typing-text">I'm a <span></span></h3>
-        <p>Minecraft player and pro builder from india.</p>
+
+        <a
+          target="_blank"
+          href="https://live.alimad.co/stats/view?app=My_Portfolio"
+          ><div
+            id="live-counter"
+            style="
+              font-family: sans-serif;
+              color: #4caf50;
+              display: inline-flex;
+              align-items: center;
+              gap: 6px;
+            "
+          >
+            <span
+              style="
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: #4caf50;
+              "
+              id="live-dot"
+            ></span>
+            <span id="live-count">Loading...</span>
+          </div></a
+        >
+        <script>
+          async function updateGlobalAppUserCount() {
+            const dot = document.getElementById("live-dot");
+            const count = document.getElementById("live-count");
+            try {
+              const response = await fetch(
+                "https://live.alimad.co/ping?app=My_Portfolio",
+              );
+              if (response.ok) {
+                const userCount = await response.text();
+                dot.style.background = "#4CAF50";
+                count.textContent = userCount + " online";
+              } else {
+                throw new Error("API error");
+              }
+            } catch (error) {
+              dot.style.background = "#f44336";
+              count.textContent = "Offline";
+            }
+          }
+          setInterval(updateGlobalAppUserCount, 20000);
+        </script>
+
         <div class="social-icons">
-          <a href="IDH-a-Linkedin-account-yet."
-            ><i class="fa-brands fa-linkedin"></i
-          ></a>
-          <a href="IDH-a-twitter-account-yet."
-            ><i class="fa-brands fa-x-twitter"></i
-          ></a>
           <a href="https://github.com/tanmay-19-cris"
             ><i class="fa-brands fa-github"></i
           ></a>

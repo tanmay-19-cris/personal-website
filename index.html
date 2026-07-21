@@ -31,54 +31,6 @@
         <h1>Hi, it's <span>Thunder</span></h1>
         <h3 class="typing-text">I'm a <span></span></h3>
 
-        <a
-          target="_blank"
-          href="https://live.alimad.co/stats/view?app=My_Portfolio"
-          ><div
-            id="live-counter"
-            style="
-              font-family: sans-serif;
-              color: #4caf50;
-              display: inline-flex;
-              align-items: center;
-              gap: 6px;
-            "
-          >
-            <span
-              style="
-                width: 20px;
-                height: 20px;
-                border-radius: 50%;
-                background: #4caf50;
-              "
-              id="live-dot"
-            ></span>
-            <span id="live-count">Loading...</span>
-          </div></a
-        >
-        <script>
-          async function updateGlobalAppUserCount() {
-            const dot = document.getElementById("live-dot");
-            const count = document.getElementById("live-count");
-            try {
-              const response = await fetch(
-                "https://live.alimad.co/ping?app=My_Portfolio",
-              );
-              if (response.ok) {
-                const userCount = await response.text();
-                dot.style.background = "#4CAF50";
-                count.textContent = userCount + " online";
-              } else {
-                throw new Error("API error");
-              }
-            } catch (error) {
-              dot.style.background = "#f44336";
-              count.textContent = "Offline";
-            }
-          }
-          setInterval(updateGlobalAppUserCount, 20000);
-        </script>
-
         <div class="social-icons">
           <a href="https://github.com/tanmay-19-cris"
             ><i class="fa-brands fa-github"></i

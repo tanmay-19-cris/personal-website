@@ -8,7 +8,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
     <link rel="stylesheet" href="style.css" />
-    <title>Portfolio Website</title>
+    <title>Minigames</title>
   </head>
   <body>
     <header>
@@ -23,210 +23,178 @@
     </header>
 
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft Random Item Picker</title>
-    <style>
-        /* Import Minecraft-like pixel font */
-        @import url('https://cdnfonts.com');
 
-        body {
-            background-color: #2c2c2c;
-            background-image: radial-gradient(#4a4a4a 1px, transparent 0), radial-gradient(#4a4a4a 1px, transparent 0);
-            background-size: 16px 16px;
-            background-position: 0 0, 8px 8px;
-            color: #ffffff;
-            font-family: 'Minecraftia', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+        <style>
+        * {
+            box-sizing: border-box;
             margin: 0;
+            padding: 0;
         }
-
-        .picker-container {
-            background-color: #c6c6c6;
-            border: 4px solid #555555;
-            box-shadow: inset -4px -4px 0px #3a3a3a, inset 4px 4px 0px #ffffff;
-            padding: 30px;
-            text-align: center;
-            width: 320px;
+        body {
+            background-color: #111;
+            color: #fff;
+            font-family: sans-serif;
+            overflow: hidden;
         }
-
-        h1 {
-            color: #373737;
-            font-size: 18px;
-            text-shadow: 2px 2px #ffffff;
-            margin-top: 0;
-            margin-bottom: 25px;
+        #score-board {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            pointer-events: none;
+            z-index: 10;
         }
-
-        /* Minecraft Hotbar Slot styling */
-        .item-display-slot {
-            width: 80px;
-            height: 80px;
-            background-color: #8b8b8b;
-            border: 4px solid #373737;
-            box-shadow: inset 4px 4px 0px #4a4a4a, inset -4px -4px 0px #ffffff;
-            margin: 0 auto 25px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .item-emoji {
-            font-size: 42px;
-            user-select: none;
-        }
-
-        .item-name {
-            color: #ffffff;
-            background-color: rgba(0, 0, 0, 0.75);
-            padding: 6px 12px;
-            border: 2px solid #555555;
-            font-size: 12px;
-            min-height: 18px;
-            margin-bottom: 20px;
-            display: inline-block;
-        }
-
-        /* Minecraft Styled Button */
-        .mc-button {
-            width: 100%;
-            background-color: #9e9e9e;
-            color: #e0e0e0;
-            border: 4px solid #000000;
-            box-shadow: inset -4px -4px 0px #565656, inset 4px 4px 0px #dbdbdb;
-            padding: 12px 0;
-            font-family: 'Minecraftia', sans-serif;
-            font-size: 14px;
-            cursor: pointer;
-            text-shadow: 2px 2px #000000;
-        }
-
-        .mc-button:hover {
-            background-color: #7ca13d;
-            color: #ffffa0;
-            box-shadow: inset -4px -4px 0px #4a6224, inset 4px 4px 0px #b1dd5b;
-        }
-
-        .mc-button:active {
-            box-shadow: inset 4px 4px 0px #4a6224, inset -4px -4px 0px #b1dd5b;
-            padding: 14px 0 10px 0;
+        canvas {
+            display: block;
+            cursor: none;
         }
     </style>
 </head>
 <body>
 
-      <h2 style="text-align: center; color: red;">The item u get i have to u! <br>
-        My user - Thunder(slack), Thun5der(minecraft)
-      </h2>
-
-    <div class="picker-container">
-        <h1>Item Generator</h1>
-        
-        <div class="item-display-slot">
-            <span id="itemEmoji" class="item-emoji">❓</span>
-        </div>
-        
-        <div id="itemName" class="item-name">Click button Below!</div>
-        
-        <button class="mc-button" onclick="pickRandomItem()">PICK ITEM</button>
-    </div>
+    <div id="score-board">Score: <span id="score">0</span></div>
+    <canvas id="gameCanvas"></canvas>
 
     <script>
-        // Array of Minecraft items pairing emojis with game names
-        const minecraftItems = [
-            { name: "Diamond", emoji: "💎" },
-            { name: "Golden Apple", emoji: "🍏" },
-            { name: "Ender Pearl", emoji: "🔮" },
-            { name: "Totem of Undying", emoji: "⚱️" },
-            { name: "TNT", emoji: "🧨" },
-            { name: "Iron Pickaxe", emoji: "⛏️" },
-            { name: "Water Bucket", emoji: "🪣" },
-            { name: "Steak", emoji: "🥩" },
-            { name: "Enchanted Book", emoji: "📘" },
-            { name: "Emerald", emoji: "💚" },
-{ name: "Iron Ingot", emoji: "⚙️" },
-{ name: "Gold Ingot", emoji: "🟨" },
-{ name: "Coal", emoji: "⚫" },
-{ name: "Redstone Dust", emoji: "🔴" },
-{ name: "Lapis Lazuli", emoji: "🔵" },
-{ name: "Amethyst Shard", emoji: "💜" },
-{ name: "Copper Ingot", emoji: "🟧" },
-{ name: "Quartz", emoji: "🤍" },
-{ name: "Elytra", emoji: "🪽" },
-{ name: "Bow", emoji: "🏹" },
-{ name: "Crossbow", emoji: "🏹" },
-{ name: "Shield", emoji: "🛡️" },
-{ name: "Diamond Sword", emoji: "⚔️" },
-{ name: "Fishing Rod", emoji: "🎣" },
-{ name: "Compass", emoji: "🧭" },
-{ name: "Clock", emoji: "🕒" },
-{ name: "Map", emoji: "🗺️" },
-{ name: "Spyglass", emoji: "🔭" },
-{ name: "Torch", emoji: "🔥" },
-{ name: "Lantern", emoji: "🏮" },
-{ name: "Campfire", emoji: "🔥" },
-{ name: "Chest", emoji: "📦" },
-{ name: "Barrel", emoji: "🛢️" },
-{ name: "Crafting Table", emoji: "🪵" },
-{ name: "Furnace", emoji: "🔥" },
-{ name: "Blast Furnace", emoji: "🏭" },
-{ name: "Smoker", emoji: "💨" },
-{ name: "Anvil", emoji: "⚒️" },
-{ name: "Enchanting Table", emoji: "📖" },
-{ name: "Bookshelf", emoji: "📚" },
-{ name: "Shulker Box", emoji: "📦" },
-{ name: "Heart of the Sea", emoji: "💙" },
-{ name: "Nautilus Shell", emoji: "🐚" },
-{ name: "Slimeball", emoji: "🟢" },
-{ name: "Honey Bottle", emoji: "🍯" },
-{ name: "Cake", emoji: "🎂" },
-{ name: "Cookie", emoji: "🍪" },
-{ name: "Bread", emoji: "🍞" },
-{ name: "Carrot", emoji: "🥕" },
-{ name: "Potato", emoji: "🥔" },
-{ name: "Pumpkin Pie", emoji: "🥧" },
-{ name: "Apple", emoji: "🍎" },
-{ name: "Melon Slice", emoji: "🍉" },
-{ name: "Glow Berries", emoji: "🫐" },
-{ name: "Suspicious Stew", emoji: "🍲" },
-{ name: "Milk Bucket", emoji: "🥛" },
-{ name: "Lava Bucket", emoji: "🪣" },
-{ name: "Lead", emoji: "🪢" },
-{ name: "Name Tag", emoji: "🏷️" },
-{ name: "Music Disc", emoji: "💿" },
-{ name: "Firework Rocket", emoji: "🚀" },
-{ name: "Fire Charge", emoji: "🔥" },
-{ name: "Eye of Ender", emoji: "👁️" },
-{ name: "Potion", emoji: "🧪" },
-{ name: "Splash Potion", emoji: "🧴" },
-{ name: "Obsidian", emoji: "⬛" },
-{ name: "Cobblestone", emoji: "🪨" },
-{ name: "Oak Log", emoji: "🪵" },
-{ name: "Glass", emoji: "🪟" },
-{ name: "Brick", emoji: "🧱" },
-{ name: "Snowball", emoji: "❄️" },
-{ name: "Feather", emoji: "🪶" },
-{ name: "Blaze Rod", emoji: "🔥" },
-{ name: "Ghast Tear", emoji: "💧" },
-{ name: "Phantom Membrane", emoji: "🦇" },
-{ name: "Wind Charge", emoji: "💨" },
-{ name: "Breeze Rod", emoji: "🌪️" }
-        ];
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        const scoreElement = document.getElementById("score");
 
-        function pickRandomItem() {
-            // Select a random index from the list array
-            const randomIndex = Math.floor(Math.random() * minecraftItems.length);
-            const selectedItem = minecraftItems[randomIndex];
-
-            // Update the DOM elements with the new values
-            document.getElementById("itemEmoji").innerText = selectedItem.emoji;
-            document.getElementById("itemName").innerText = selectedItem.name;
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
-    </script> <br>
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+
+        let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+        let score = 0;
+        let gameOver = false;
+
+        window.addEventListener("mousemove", (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        const segmentRadius = 12;
+        let snake = [];
+        const initialLength = 15;
+
+        for (let i = 0; i < initialLength; i++) {
+            snake.push({ x: canvas.width / 2, y: canvas.height / 2 });
+        }
+
+        let food = { x: 0, y: 0, radius: 8 };
+        function spawnFood() {
+            food.x = Math.random() * (canvas.width - 40) + 20;
+            food.y = Math.random() * (canvas.height - 40) + 20;
+        }
+        spawnFood();
+
+        function update() {
+            if (gameOver) return;
+
+            let head = snake[0];
+            let targetX = mouse.x;
+            let targetY = mouse.y;
+            
+            head.x += (targetX - head.x) * 0.15;
+            head.y += (targetY - head.y) * 0.15;
+
+            for (let i = 1; i < snake.length; i++) {
+                let prev = snake[i - 1];
+                let curr = snake[i];
+                
+                let dx = prev.x - curr.x;
+                let dy = prev.y - curr.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                
+                let minDistance = segmentRadius * 1.2; 
+                if (distance > minDistance) {
+                    curr.x += dx * 0.35;
+                    curr.y += dy * 0.35;
+                }
+            }
+
+            let dxFood = head.x - food.x;
+            let dyFood = head.y - food.y;
+            let distanceToFood = Math.sqrt(dxFood * dxFood + dyFood * dyFood);
+
+            if (distanceToFood < segmentRadius + food.radius) {
+                score++;
+                scoreElement.innerText = score;
+                spawnFood();
+                
+                for (let i = 0; i < 3; i++) {
+                    snake.push({ x: snake[snake.length - 1].x, y: snake[snake.length - 1].y });
+                }
+            }
+
+            for (let i = 5; i < snake.length; i++) {
+                let dxSelf = head.x - snake[i].x;
+                let dySelf = head.y - snake[i].y;
+                let distanceToSelf = Math.sqrt(dxSelf * dxSelf + dySelf * dySelf);
+
+                if (distanceToSelf < segmentRadius) {
+                    gameOver = true;
+                    alert(`Game Over! Final Score: ${score}. Click OK to restart.`);
+                    resetGame();
+                    break;
+                }
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.beginPath();
+            ctx.arc(food.x, food.y, food.radius, 0, Math.PI * 2);
+            ctx.fillStyle = "#ff3366";
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = "#ff3366";
+            ctx.fill();
+            ctx.closePath();
+
+            ctx.shadowBlur = 0;
+
+            for (let i = snake.length - 1; i >= 0; i--) {
+                ctx.beginPath();
+                ctx.arc(snake[i].x, snake[i].y, segmentRadius, 0, Math.PI * 2);
+                
+                if (i === 0) {
+                    ctx.fillStyle = "#00ffcc"; 
+                } else {
+                    let greenValue = Math.max(100, 255 - (i * 8));
+                    ctx.fillStyle = `rgb(0, ${greenValue}, 150)`;
+                }
+                
+                ctx.fill();
+                ctx.closePath();
+            }
+        }
+
+        function resetGame() {
+            score = 0;
+            scoreElement.innerText = score;
+            snake = [];
+            for (let i = 0; i < initialLength; i++) {
+                snake.push({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
+            }
+            mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+            spawnFood();
+            gameOver = false;
+        }
+
+        function gameLoop() {
+            update();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+
+        gameLoop();
+    </script>
+
 
 
   </body>

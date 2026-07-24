@@ -8,7 +8,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
     <link rel="stylesheet" href="style.css" />
-    <title>Portfolio Website</title>
+    <title>Extras</title>
   </head>
   <body>
     <header>
@@ -33,20 +33,18 @@
         }
         #clock {
             font-size: 0r;
-            color: #00ffcc;
+            color: white;
             background-color: #333;
             padding: 20px 40px;
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+            box-shadow: 0 0 20px rgba(240, 73, 73, 0.5);
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. The HTML Container -->
     <div id="clock">00:00:00</div>
 
-    <!-- 2. The JavaScript Logic -->
     <script>
         function updateClock() {
             const now = new Date();
@@ -54,22 +52,18 @@
             let minutes = now.getMinutes();
             let seconds = now.getSeconds();
 
-            // Add leading zeros to numbers below 10
             hours = hours < 10 ? '0' + hours : hours;
             minutes = minutes < 10 ? '0' + minutes : minutes;
             seconds = seconds < 10 ? '0' + seconds : seconds;
 
-            // Combine into a readable time string
             const timeString = `${hours}:${minutes}:${seconds}`;
 
             // Insert the time string into the HTML container
             document.getElementById('clock').textContent = timeString;
         }
 
-        // Run the clock immediately on page load
         updateClock();
 
-        // Update the clock every 1000 milliseconds (1 second)
         setInterval(updateClock, 1000);
     </script>
 
@@ -90,7 +84,6 @@
 
         <p style="text-align: left;">🐛 Bugs Fixed: Too many 💀</p> <br>
 
-          <!-- begin wwww.htmlcommentbox.com -->
         <div id="HCB_comment_box"><a href="">Comment Box</a> is loading comments...</div>
         <link rel="stylesheet" type="text/css" href="style.css" />
         <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="https://www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24h%2F4Dbz7yEnaAI7udMZqyc0"+"&opts=16798&num=10&ts=1784633426462");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>

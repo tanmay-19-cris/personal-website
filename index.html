@@ -33,20 +33,18 @@
         }
         #clock {
             font-size: 0r;
-            color: #00ffcc;
+            color: white;
             background-color: #333;
             padding: 20px 40px;
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+            box-shadow: 0 0 20px rgba(240, 73, 73, 0.5);
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. The HTML Container -->
     <div id="clock">00:00:00</div>
 
-    <!-- 2. The JavaScript Logic -->
     <script>
         function updateClock() {
             const now = new Date();
@@ -54,7 +52,6 @@
             let minutes = now.getMinutes();
             let seconds = now.getSeconds();
 
-            // Add leading zeros to numbers below 10
             hours = hours < 10 ? '0' + hours : hours;
             minutes = minutes < 10 ? '0' + minutes : minutes;
             seconds = seconds < 10 ? '0' + seconds : seconds;
@@ -62,14 +59,11 @@
             // Combine into a readable time string
             const timeString = `${hours}:${minutes}:${seconds}`;
 
-            // Insert the time string into the HTML container
             document.getElementById('clock').textContent = timeString;
         }
 
-        // Run the clock immediately on page load
         updateClock();
 
-        // Update the clock every 1000 milliseconds (1 second)
         setInterval(updateClock, 1000);
     </script>
 

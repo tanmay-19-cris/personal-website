@@ -241,24 +241,15 @@ span{
     0%, 20%{
         content: "Hackcluber";
     }
-    21%, 40%{
-        content: Minecraft Builder;
-    }
-    41%, 60%{
+    0%, 20%{
         content: "Footballer";
     }
-    61%, 80%{
-        content: "Pikachu";
-    }
-    81%, 100%{
-        content: "Athlete";
-    }
-}
 
 @media (max-width: 1000px){
     .home{
         gap: 4rem;
     }    
+}
 }
 
 @media (max-width: 995px){

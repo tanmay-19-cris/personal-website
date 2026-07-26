@@ -1,6 +1,7 @@
 @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap%27);
 
 
+
 html, body {
   overflow-y: auto;
   p {
@@ -51,7 +52,7 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 100;
+
 }
 
 .logo{
@@ -282,24 +283,22 @@ span{
 
 
 
-
-
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: #b74b4b;
+    font-family: "Poppins", sans-serif;
 }
 
-header{
+header {
     position: relative;
     left: 0;
     top: 0;
-    width: 100%;
+    width: 1005;
     height: 80px;
 }
 
-header h2{
+header h4 {
     position: absolute;
     left: 10%;
     bottom: 1rem;
@@ -308,9 +307,9 @@ header h2{
 
 /* Splash screen */
 
-.intro{
+.intro {
     position: fixed;
-    z-index: 1;
+    z-index: 9999;
     left: 0;
     top: 0;
     width: 100%;
@@ -319,7 +318,7 @@ header h2{
     transition: 1s;
 }
 
-.logo-header{
+.logo-header {
     position: absolute;
     top: 40%;
     left: 50%;
@@ -327,22 +326,21 @@ header h2{
     color: #ffffff;
 }
 
-.logo{
+.logo {
     position: relative;
     display: inline-block;
     bottom: -20px;
     opacity: 0;
 }
 
-.logo.active{
+.logo.active {
     bottom: 0;
     opacity: 1;
     transition: ease-in-out 0.5s;
 }
 
-.logo.fade{
+.logo.fade {
     bottom: 150px;
     opacity: 0;
     transition: ease-in-out 0.5s;
-
 }

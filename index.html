@@ -3,93 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    />
     <link rel="stylesheet" href="style.css" />
-    <title>Portfolio Website</title>
+
+    <title>Intro</title>
   </head>
   <body>
+    <div class="intro">
+      <h1 class="logo-header">
+        <span class="logo">Thunder</span><span class="logo"></span>
+      </h1>
+    </div>
+
     <header>
-      <a href="index.html" class="logo">Thunder</a>
-
-      <nav>
-        <a href="index.html" class="active"> Home</a>
-        <a href="about.html">About</a>
-        <a href="projects.html">Projects</a>
-        <a href="minigames.html">Minigames</a>
-        <a href="experience.html">Experience</a>
-      </nav>
-
-          <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #1a1a1a;
-            font-family: 'Courier New', Courier, monospace;
-        }
-        #clock {
-            font-size: 0r;
-            color: white;
-            background-color: #333;
-            padding: 20px 40px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(240, 73, 73, 0.5);
-        }
-    </style>
-</head>
-<body>
-
-    <div id="clock">00:00:00</div>
-
-    <script>
-        function updateClock() {
-            const now = new Date();
-            let hours = now.getHours();
-            let minutes = now.getMinutes();
-            let seconds = now.getSeconds();
-
-            hours = hours < 10 ? '0' + hours : hours;
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-            seconds = seconds < 10 ? '0' + seconds : seconds;
-
-            // Combine into a readable time string
-            const timeString = `${hours}:${minutes}:${seconds}`;
-
-            document.getElementById('clock').textContent = timeString;
-        }
-
-        updateClock();
-
-        setInterval(updateClock, 1000);
-    </script>
-
-
+      <h2>Thunder</h2>
     </header>
-    <section class="home">
-      <div class="home-img">
-        <img src="Main.jpg" alt="" />
-      </div>
-      <div class="home-content">
-        <h1>Hi, it's <span>Thunder</span></h1>
-        <h3 class="typing-text">I'm a <span></span></h3>
-
-        <div class="social-icons">
-          <a href="https://github.com/tanmay-19-cris"
-            ><i class="fa-brands fa-github"></i
-          ></a>
-          <a href="https://www.instagram.com/tanmya.19/"
-            ><i class="fa-brands fa-instagram"></i
-          ></a>
-          <a href="https://hackclub.enterprise.slack.com/team/U0AEXBFEP8S"
-            ><i class="fa-brands fa-slack"></i
-          ></a>
-        </div>
-        <a href="mailto:tanmayshet2010@gmail.com" class="btn">Contact me</a>
-      </div>
-    </section>
+    <script src="app.js"></script>
   </body>
 </html>

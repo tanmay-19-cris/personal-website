@@ -244,7 +244,7 @@ span{
 
 @keyframes words{
     0%, 20%{
-        content: "Hackcluber";
+        content: "Hackclubber";
     }
     0%, 20%{
         content: "Footballer";
@@ -343,4 +343,24 @@ header h4 {
     bottom: 150px;
     opacity: 0;
     transition: ease-in-out 0.5s;
+}
+
+.text-glow {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 20px;
+    background: #161616;
+    box-shadow: 0 0 25px rgba(255,80,80,.2);
+}
+
+
+
+body {
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+body.slide-out {
+    transform: translateX(-100%);
+    opacity: 0;
 }

@@ -12,7 +12,7 @@
   </head>
   <body>
     <header>
-      <nav>
+      <nav class="text-glow">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="projects.html">Projects</a>
@@ -20,115 +20,12 @@
         <a href="experience.html">Experience</a>
         <a href="extras.html" class="active">Extras</a>
       </nav>
-
-
-    <style>
-        body {
-            display: 0;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #1a1a1a;
-            font-family: 'Courier New', Courier, monospace;
-        }
-        #clock {
-            font-size: 0r;
-            color: white;
-            background-color: #333;
-            padding: 20px 40px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(240, 73, 73, 0.5);
-        }
-    </style>
-</head>
-<body>
-
-    <div id="clock">00:00:00</div>
-
-    <script>
-        function updateClock() {
-            const now = new Date();
-            let hours = now.getHours();
-            let minutes = now.getMinutes();
-            let seconds = now.getSeconds();
-
-            hours = hours < 10 ? '0' + hours : hours;
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-            seconds = seconds < 10 ? '0' + seconds : seconds;
-
-            const timeString = `${hours}:${minutes}:${seconds}`;
-
-            document.getElementById('clock').textContent = timeString;
-        }
-
-        updateClock();
-
-        setInterval(updateClock, 1000);
-    </script>
-
-
     </header>
     <section class="home">
       <div class="home-content">
 
 
-    <h3 style="text-align: left; color: #b74b4b;">Fun Facts Abt me ✨ </h3> <br>
-       
-<p style="text-align: left; color: #b74b4b;"><b>1. HackClubbing</b></p>
-
-        <p style="text-align: left;">Websites Built: <i style="color: red;">2</i> </p>
-        <p style="text-align: left;">Games Made: <i style="color: red;">1</i> </p>
-        <p style="text-align: left;">Bugs Fixed: <i style="color: red;">Too many</i> </p> <br>
-
-
-<p style="text-align: left; color: #b74b4b;"><b>2. Favorite Things</b></p>
-
-        <p style="text-align: left;">Favorite Weapon: <i style="color: red;">Trident</i></p>
-
-        <p style="text-align: left;">Favorite Dimension: <i style="color: red;">Overworld</i></p>
-
-        <p style="text-align: left;">Favorite Biome: <i style="color: red;">Cherry Grove</i></p>
-
-        <p style="text-align: left;">Favorite Block: <i style="color: red;">Cherry grove leaves</i></p>
-
-        <p style="text-align: left;">Favorite Mob: <i style="color: red;">Ocelot</i></p> <br>
-
-<p style="text-align: left; color: #b74b4b;"><b>3. My Set-up</b></p>
-        <p style="text-align: left;">CPU: <i style="color: red;">Intel core i3 6th Gen</i></p>
-        <p style="text-align: left;">GPU: <i style="color: red;">I GPU</i></p>
-        <p style="text-align: left;">Memory: <i style="color: red;">8GB RAM</i></p>
-        <p style="text-align: left;">Storage: <i style="color: red;">1TB SSD</i></p> <br>
-
-<p style="text-align: left; color: #b74b4b;"><b>4. Projects working on</b></p>
-        <p style="text-align: left;">Minecraft Portfolio Website</p>
-        <p style="text-align: left;">2D Platformer (Godot)This website</p>
-        <p style="text-align: left;">This website</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
+      <script src="script.js"></script>
   </body>
 </html>

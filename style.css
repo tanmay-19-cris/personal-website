@@ -13,6 +13,15 @@ html {
   scroll-behavior: smooth;
 }
 
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:1rem 9%;
+    z-index:1000;
+}
+
 
 *{
     margin: 0;
@@ -96,16 +105,17 @@ nav a.active{
     }
 
     nav{
-        display:none;
-        position:absolute;
-        top:100%;
-        right:0;
-        width:220px;
-        background:#161616;
-        border-left:3px solid #b74b4b;
-        border-bottom:3px solid #b74b4b;
-        border-bottom-left-radius:2rem;
-        padding:1rem;
+    display:none;
+    position:absolute;
+    top:100%;
+    right:0;
+    width:300px;
+    background:rgba(22,22,22,0.8);
+    backdrop-filter: blur(10px);
+    border-left:3px solid #b74b4b;
+    border-bottom:3px solid #b74b4b;
+    border-bottom-left-radius:2rem;
+    padding:2rem;
     }
 
     nav.active{
@@ -114,23 +124,23 @@ nav a.active{
 
     nav a{
         display:block;
-        margin:2rem 0;
-        font-size:2rem;
+        margin:2.5rem 0;
+        font-size:2.5rem;
     }
 }
 
 
 section{
-    min-height: 100vh;
-    padding: 5rem 9% 5rem;
+    min-height:100vh;
+    padding:0 9%;
 }
 
 .home{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8rem;
-    background: black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8rem;
+    background:black;
 }
 
 .home .home-content h1{
@@ -159,11 +169,8 @@ span{
 
 
 .home-content{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    text-align: center;
 }
-
 
 .home-img img{
     position: relative;
@@ -267,7 +274,7 @@ span{
 
 @media (max-width: 995px){
     .home{
-        flex: column;
+        flex-direction: column;
         margin: 5rem 4rem;
     }
 
@@ -317,13 +324,7 @@ span{
     font-family: "Poppins", sans-serif;
 }
 
-header {
-    position: relative;
-    left: 0;
-    top: 0;
-    width: 1005;
-    height: 80px;
-}
+
 
 header h4 {
     position: absolute;

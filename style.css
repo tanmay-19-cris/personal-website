@@ -85,7 +85,7 @@ nav a.active{
 @media(max-width:995px){
     nav{
         position:absolute;
-        display: none;
+        display: flex;
         top: 0;
         right: 0;
         width: 40%;
@@ -151,6 +151,14 @@ span{
 .home-img{
     border-radius: 50%;
 }
+
+
+.home-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 .home-img img{
     position: relative;
@@ -249,13 +257,16 @@ span{
     0%, 20%{
         content: "Footballer";
     }
+}
 
-@media (max-width: 1000px){
+@media (max-width: 995px){
     .home{
-        gap: 4rem;
-    }    
-}
-}
+    flex-direction: column;
+    gap: 3rem;
+    margin: 8rem 2rem 2rem;
+    text-align: center;
+    }
+}   
 
 @media (max-width: 995px){
     .home{
@@ -272,11 +283,30 @@ span{
     }
 
     .home-img img{
-        width: 70vw;
-        margin-top: 4rem;
-
-    }
+        width: 80%;
+        max-width: 300px;
+        margin-top: 2rem;
 }
+}
+
+
+
+
+
+
+@media (max-width: 768px) {
+
+    .container {
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+}
+
+
 
 
 

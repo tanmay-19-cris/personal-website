@@ -3,14 +3,9 @@
 
 
 html, body {
-  overflow-y: auto;
-  p {
-  text-align: center;
-}
-}
-
-html {
-  scroll-behavior: smooth;
+    width: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 header{
@@ -18,7 +13,7 @@ header{
     top:0;
     left:0;
     width:100%;
-    padding:1rem 9%;
+    padding:1rem 5%;
     z-index:1000;
 }
 
@@ -174,7 +169,7 @@ span{
 
 .home-img img{
     position: relative;
-    width: 32vw;
+    width: min(80vw, 300px);
     border-radius: 50%;
     box-shadow: 0 0 25px solid #b74b4b;
     cursor: pointer;
@@ -275,7 +270,7 @@ span{
 @media (max-width: 995px){
     .home{
         flex-direction: column;
-        margin: 5rem 4rem;
+        margin: 5rem 1rem;
     }
 
     .home .home-content h3{

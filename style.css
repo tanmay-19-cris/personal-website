@@ -35,7 +35,7 @@ body{
     background-color: black;
     color: white;
     h2 {
-  text-align: center;
+    text-align: center;
 }
 
 }
@@ -52,7 +52,14 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index:1000;
+}
 
+.menu-icon{
+    font-size: 3rem;
+    color: white;
+    cursor: pointer;
+    display: none;
 }
 
 .logo{
@@ -83,37 +90,35 @@ nav a.active{
 
 
 @media(max-width:995px){
+
+    .menu-icon{
+        display:block;
+    }
+
     nav{
+        display:none;
         position:absolute;
-        display: flex;
-        top: 0;
-        right: 0;
-        width: 40%;
-        border-left: 3px solid #b74b4b;
-        border-bottom: 3px solid #b74b4b;
-        border-bottom-left-radius: 2rem;
-        padding: 1rem solid;
-        background-color: #161616;
-        border-top: 0.1rem solid rgba(0,0,0,0.1);
+        top:100%;
+        right:0;
+        width:220px;
+        background:#161616;
+        border-left:3px solid #b74b4b;
+        border-bottom:3px solid #b74b4b;
+        border-bottom-left-radius:2rem;
+        padding:1rem;
     }
 
     nav.active{
-        display: block;
+        display:block;
     }
 
     nav a{
-        display: block;
-        font-size: 2rem;
-        margin: 3rem 0;
-    }
-
-    nav a:hover
-    nav a.active{
-        padding: 1rem;
-        border-radius: 0.5rem;
-        border-bottom: 0.5rem solid #b74b4b;
+        display:block;
+        margin:2rem 0;
+        font-size:2rem;
     }
 }
+
 
 section{
     min-height: 100vh;
@@ -250,14 +255,6 @@ span{
     }
 }
 
-@keyframes words{
-    0%, 20%{
-        content: "Hackclubber";
-    }
-    0%, 20%{
-        content: "Footballer";
-    }
-}
 
 @media (max-width: 995px){
     .home{
@@ -393,4 +390,10 @@ body {
 body.slide-out {
     transform: translateX(-100%);
     opacity: 0;
+}
+
+.menu-icon{
+    display:block !important;
+    color:white;
+    font-size:40px;
 }

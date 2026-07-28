@@ -11,3 +11,16 @@ document.querySelectorAll("a").forEach(link => {
         }
     });
 });
+
+const menu = document.getElementById("menu-icon");
+const navbar = document.getElementById("navbar");
+
+menu.onclick = () => {
+    navbar.classList.toggle("active");
+};
+
+document.querySelectorAll("#navbar a").forEach(link => {
+    link.onclick = () => {
+        navbar.classList.remove("active");
+    };
+});

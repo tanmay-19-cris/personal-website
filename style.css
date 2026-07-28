@@ -372,14 +372,7 @@ header h4 {
     transition: ease-in-out 0.5s;
 }
 
-.text-glow {
-    width: fit-content;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 20px;
-    background: #161616;
-    box-shadow: 0 0 25px rgba(255,80,80,.2);
-}
+
 
 
 
@@ -393,7 +386,11 @@ body.slide-out {
 }
 
 .menu-icon{
-    display:block !important;
-    color:white;
-    font-size:40px;
+    display:none;
+}
+
+@media(max-width:995px){
+    .menu-icon{
+        display:block;
+    }
 }

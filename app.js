@@ -2,7 +2,18 @@ let intro = document.querySelector('.intro');
 let logo = document.querySelector('.logo-header');
 let logoSpan = document.querySelectorAll('.logo');
 
+if (performance.getEntriesByType('navigation')[0].type === 'reload') {
+    sessionStorage.removeItem('introPlayed');
+}
+
 window.addEventListener('DOMContentLoaded', () => {
+
+    if (sessionStorage.getItem('introPlayed')) {
+        intro.style.display = 'none';
+        return;
+    }
+
+    sessionStorage.setItem('introPlayed', 'true');
 
     setTimeout(() => {
 

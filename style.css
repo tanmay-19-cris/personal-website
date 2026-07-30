@@ -32,31 +32,29 @@ html{
     font-size: 80%;
 }
 
-body{
-    width: 100%;
-    height: 100vh;
-    overflow-x: hidden;
-    background-color: black;
-    color: white;
-    h2 {
-    text-align: center;
-}
+body {
+    background:#080808;
 
+    background-image:
+    linear-gradient(#171717 1px, transparent 1px),
+    linear-gradient(90deg,#171717 1px, transparent 1px);
+
+    background-size:40px 40px;
 }
 
 header{
-    margin-top: 0;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    padding: 1rem 9%;
+    width: 220px;
+    height: 100vh;
+    padding: 2rem 1rem;
     background-color: black;
-    filter: drop-shadow(10px);
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    z-index:1000;
+    z-index: 1000;
 }
 
 .menu-icon{
@@ -78,20 +76,63 @@ header{
     transform: scale(1.1);
 }
 
-nav a{
-    font-size: 1.8rem;
-    color: white;
-    margin-left: 4rem;
-    font-weight: 500;
-    transition: 0.3s ease;
-    border-bottom: 3px solid transparent;
-}
-nav a:hover,
-nav a.active{
-    color: #b74b4b;
-    border-bottom: 3px solid #b74b4b;
+nav {
+    width: 220px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    background:#050505;
+    border-right:1px solid #2b2b2b;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    padding-top:35px;
 }
 
+
+nav a {
+    color:white;
+    text-decoration:none;
+
+    font-size:17px;
+    font-weight:500;
+
+    padding:15px 0;
+    width:auto;
+}
+
+
+nav a.active {
+    color:#c44b4f;
+    border-bottom:3px solid #c44b4f;
+}
+
+@keyframes navAppear {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 @media(max-width:995px){
 
@@ -126,16 +167,19 @@ nav a.active{
 
 
 section{
-    min-height:100vh;
-    padding:0 9%;
+    min-height: 100vh;
+    padding: 2rem 4rem;
+    margin-left: 220px;
 }
 
-.home{
+.home {
+    margin-left:220px;
+    height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    gap:8rem;
-    background:black;
+    flex-direction:column;
+    transform:translateY(-20px);
 }
 
 .home .home-content h1{
@@ -158,8 +202,14 @@ span{
     font-size: 1.4rem;
 }
 
-.home-img{
-    border-radius: 50%;
+.home img {
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    border:3px solid #c44b4f;
+    box-shadow: 0 0 25px #c44b4f;
+    margin-bottom:25px;
+    object-fit: cover;
 }
 
 
@@ -168,12 +218,10 @@ span{
 }
 
 .home-img img{
-    position: relative;
-    width: min(80vw, 300px);
+    width: 180px;
     border-radius: 50%;
-    box-shadow: 0 0 25px solid #b74b4b;
-    cursor: pointer;
-    transition: 0.2 linear;
+    display: block;
+    margin: 0 auto;
 }
 
 .home-img img:hover{
@@ -307,11 +355,6 @@ span{
 
 
 
-
-
-
-
-
 * {
     margin: 0;
     padding: 0;
@@ -373,13 +416,14 @@ header h4 {
 
 
 body {
-    transition: transform 0.5s ease, opacity 0.5s ease;
+    transition: none;
 }
 
 body.slide-out {
-    transform: translateX(-100%);
-    opacity: 0;
+    transform: none;
+    opacity: 1;
 }
+
 
 .menu-icon{
     display:none;
@@ -398,4 +442,63 @@ html, body {
 
 * {
     max-width: 100%;
+}
+
+.home-style {
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.home-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  width: 80%;
+  padding: 40px;
+}
+
+
+.home-box .home-img img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+
+.home-box .home-content {
+  text-align: center;
+}
+
+
+.home-box h1 {
+  font-size: 4rem;
+}
+
+
+@media(max-width:900px){
+
+  .home-box {
+    flex-direction: column;
+  }
+
+  .home-box h1 {
+    font-size: 3rem;
+  }
+
+  .home-box .home-img img {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+.profile-img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
 }

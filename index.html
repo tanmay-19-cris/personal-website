@@ -211,12 +211,10 @@
     </div>
 
     <header>
-      <a href="index.html" class="logo">Welcome</a>
+      <div class="logo">Thunder</div>
 
-      <i class="fa-solid fa-bars menu-icon" id="menu-icon"></i>
-
-      <nav id="navbar">
-        <a href="index.html" class="active"> Home</a>
+      <nav>
+        <a href="index.html" class="active">Home</a>
         <a href="about.html">About</a>
         <a href="projects.html">Projects</a>
         <a href="minigames.html">Minigames</a>
@@ -224,6 +222,15 @@
         <a href="extras.html">Extras</a>
       </nav>
     </header>
+
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const navbar = document.getElementById("navbar");
+
+      menuBtn.addEventListener("click", () => {
+        navbar.classList.toggle("active");
+      });
+    </script>
 
     <section class="home">
       <div class="home-img">

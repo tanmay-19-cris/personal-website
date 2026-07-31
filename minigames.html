@@ -233,6 +233,15 @@
       </nav>
     </header>
 
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const navbar = document.getElementById("navbar");
+
+      menuBtn.addEventListener("click", () => {
+        navbar.classList.toggle("active");
+      });
+    </script>
+
     <main>
       <section class="hero">
         <h1>Minigames</h1>

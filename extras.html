@@ -222,6 +222,78 @@
         font-size: 3rem;
         cursor: pointer;
       }
+
+      .skills-window {
+        max-width: 800px;
+        margin: 4rem auto;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(183, 75, 75, 0.25);
+        border-radius: 24px;
+        backdrop-filter: blur(10px);
+        transition: 0.3s ease;
+      }
+
+      .skills-window:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 0 30px rgba(183, 75, 75, 0.25);
+      }
+
+      .skills-window h2 {
+        color: #b74b4b;
+        font-size: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .skill {
+        margin-bottom: 1.5rem;
+      }
+
+      .skill:last-child {
+        margin-bottom: 0;
+      }
+
+      .skill-name {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.6rem;
+        font-size: 1rem;
+      }
+
+      .skill-bar {
+        width: 100%;
+        height: 14px;
+        background: #1a1a1a;
+        border-radius: 999px;
+        overflow: hidden;
+        border: 1px solid rgba(183, 75, 75, 0.3);
+      }
+
+      .skill-fill {
+        height: 100%;
+        border-radius: 999px;
+        background: #b74b4b;
+        animation: fillBar 1.5s ease forwards;
+      }
+
+      .html {
+        width: 60%;
+      }
+      .css {
+        width: 30%;
+      }
+      .js {
+        width: 25%;
+      }
+      .godot {
+        width: 70%;
+      }
+
+      @keyframes fillBar {
+        from {
+          width: 0;
+        }
+      }
     </style>
   </head>
 
@@ -299,6 +371,50 @@
           </div>
         </div>
 
+        <section class="skills-window">
+          <h2>My Skills</h2>
+
+          <div class="skill">
+            <div class="skill-name">
+              <span>HTML</span>
+              <span>60%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill html"></div>
+            </div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">
+              <span>CSS</span>
+              <span>30%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill css"></div>
+            </div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">
+              <span>JavaScript</span>
+              <span>25%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill js"></div>
+            </div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">
+              <span>Godot</span>
+              <span>70%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill godot"></div>
+            </div>
+          </div>
+        </section>
+
         <div class="extra-card">
           <div class="extra-icon">⌛</div>
 
@@ -320,5 +436,21 @@
         </div>
       </section>
     </main>
+
+    <h2 style="text-align: center">Ohh, You're leaving?</h2>
+
+    <img
+      src="sp1.gif"
+      alt="sad Pikachu"
+      style="display: block; margin: 0 auto; width: 290px"
+    />
+    <h2 style="text-align: center">Well, I hope you come back soon!</h2>
+    <img
+      src="sp2.gif"
+      alt="sad Pikachu"
+      style="display: block; margin: 0 auto; width: 200px"
+    />
+    <br />
+    <script src="script.js"></script>
   </body>
 </html>

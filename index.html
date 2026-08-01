@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,8 +8,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-    <link rel="stylesheet" href="style.css" />
-    <title>Portfolio Website</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Thunder | Portfolio</title>
 
     <style>
       * {
@@ -22,6 +26,45 @@
         background: #0b0b0b;
         color: white;
         overflow-x: hidden;
+      }
+
+      /* Intro Animation */
+      .intro {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100000;
+        transition: top 0.8s ease;
+      }
+
+      .logo-header {
+        display: flex;
+        font-size: 4rem;
+        font-weight: 700;
+      }
+
+      .logo-header .logo {
+        color: #b74b4b;
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      .logo-header .logo.active {
+        opacity: 1;
+        transform: translateY(0);
+        transition: 0.5s ease;
+      }
+
+      .logo-header .logo.fade {
+        opacity: 0;
+        transform: translateY(-40px);
+        transition: 0.5s ease;
       }
 
       header {
@@ -38,11 +81,13 @@
         border-right: 1px solid rgba(183, 75, 75, 0.25);
       }
 
-      .logo {
+      header .logo {
         color: #b74b4b;
         font-size: 2rem;
         font-weight: 700;
         margin-bottom: 3rem;
+        opacity: 1;
+        transform: none;
       }
 
       nav {
@@ -66,7 +111,10 @@
       main {
         margin-left: 220px;
         min-height: 100vh;
-        padding: 4rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem;
         position: relative;
       }
 
@@ -82,96 +130,86 @@
       }
 
       .hero {
-        text-align: center;
-        margin-bottom: 3rem;
-      }
-
-      .hero h1 {
-        font-size: 3rem;
-        margin-bottom: 0.5rem;
-      }
-
-      .hero p {
-        color: #cfcfcf;
-        max-width: 800px;
-        margin: 0 auto;
-        line-height: 1.8;
-      }
-
-      .projects {
+        width: 100%;
         max-width: 1000px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-      }
-
-      .project-card {
-        display: flex;
-        align-items: flex-start;
-        gap: 2rem;
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(183, 75, 75, 0.25);
-        border-radius: 24px;
-        padding: 2rem;
-        backdrop-filter: blur(10px);
-        transition: 0.3s ease;
-      }
-
-      .project-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 0 30px rgba(183, 75, 75, 0.25);
-      }
-
-      .project-icon {
-        width: 90px;
-        height: 90px;
-        border-radius: 20px;
-        background: rgba(183, 75, 75, 0.12);
-        border: 1px solid rgba(183, 75, 75, 0.3);
         display: flex;
         align-items: center;
-        justify-content: center;
-        font-size: 2.5rem;
+        justify-content: flex-start;
+        gap: 3rem;
+      }
+
+      .profile-img {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #b74b4b;
+        box-shadow: 0 0 25px rgba(183, 75, 75, 0.35);
         flex-shrink: 0;
       }
 
-      .project-content {
+      .hero-content {
         flex: 1;
+        padding-top: 40px;
       }
 
-      .project-content h2 {
+      .hero-content h1 {
+        font-size: 3rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .hero-content h1 span {
         color: #b74b4b;
-        font-size: 2rem;
-        margin-bottom: 1rem;
       }
 
-      .project-content p {
-        color: #ddd;
+      .hero-content p {
+        color: #d7d7d7;
         line-height: 1.9;
-        margin-bottom: 1.2rem;
+        margin-bottom: 1.5rem;
+        max-width: 620px;
+        font-size: 1.05rem;
       }
 
-      .tags {
+      .social-icons {
         display: flex;
-        flex-wrap: wrap;
-        gap: 0.8rem;
+        gap: 1rem;
+        margin-bottom: 1.8rem;
       }
 
-      .tags span {
-        background: #141414;
-        border: 1px solid #b74b4b;
+      .social-icons a {
+        width: 46px;
+        height: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        border: 1px solid rgba(183, 75, 75, 0.35);
         color: white;
-        padding: 0.5rem 0.9rem;
-        border-radius: 999px;
-        font-size: 0.9rem;
-        transition: 0.3s;
+        text-decoration: none;
+        transition: 0.3s ease;
+        font-size: 1.2rem;
       }
 
-      .tags span:hover {
+      .social-icons a:hover {
         background: #b74b4b;
         color: black;
-        transform: scale(1.05);
+        transform: translateY(-3px);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.85rem 1.6rem;
+        border-radius: 999px;
+        border: 1px solid #b74b4b;
+        color: white;
+        text-decoration: none;
+        transition: 0.3s ease;
+      }
+
+      .btn:hover {
+        background: #b74b4b;
+        color: black;
+        transform: translateY(-2px);
       }
 
       @media (max-width: 768px) {
@@ -188,16 +226,30 @@
           padding: 2rem 1rem;
         }
 
-        .hero h1 {
+        .hero {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .profile-img {
+          width: 170px;
+          height: 170px;
+        }
+
+        .hero-content {
+          padding-top: 0;
+        }
+
+        .hero-content h1 {
           font-size: 2.3rem;
         }
 
-        .project-card {
-          flex-direction: column;
+        .social-icons {
+          justify-content: center;
         }
 
-        .tags {
-          justify-content: center;
+        .logo-header {
+          font-size: 3rem;
         }
       }
     </style>
@@ -222,36 +274,38 @@
         <a href="extras.html">Extras</a>
       </nav>
     </header>
+    <main>
+      <section class="hero">
+        <img src="Main.jpg" alt="Thunder" class="profile-img" />
 
-    <script>
-      const menuBtn = document.getElementById("menu-btn");
-      const navbar = document.getElementById("navbar");
+        <div class="hero-content">
+          <p>Tap somewhere to trick the cat!</p>
+          <h1>Hi, it's <span>Thunder</span></h1>
 
-      menuBtn.addEventListener("click", () => {
-        navbar.classList.toggle("active");
-      });
-    </script>
+          <p>
+            I'm a web developer, game developer, and football player who enjoys
+            building creative projects and learning new technologies. Welcome to
+            my portfolio where I share my work, experiments, and everything I'm
+            currently working on.
+          </p>
 
-    <section class="home">
-      <div class="home-img">
-        <img src="Main.jpg" alt="" />
-      </div>
-      <div class="home-content">
-        <h1>Hi, it's <span>Thunder</span><br /></h1>
-        <div class="social-icons">
-          <a href="https://github.com/tanmay-19-cris"
-            ><i class="fa-brands fa-github"></i
-          ></a>
-          <a href="https://www.instagram.com/tanmya.19/"
-            ><i class="fa-brands fa-instagram"></i
-          ></a>
-          <a href="https://hackclub.enterprise.slack.com/team/U0AEXBFEP8S"
-            ><i class="fa-brands fa-slack"></i
-          ></a>
+          <div class="social-icons">
+            <a href="https://github.com/tanmay-19-cris"
+              ><i class="fa-brands fa-github"></i
+            ></a>
+            <a href="https://www.instagram.com/tanmya.19/"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a href="https://hackclub.enterprise.slack.com/team/U0AEXBFEP8S"
+              ><i class="fa-brands fa-slack"></i
+            ></a>
+          </div>
+
+          <a href="mailto:tanmayshet2010@gmail.com" class="btn">Contact Me</a>
         </div>
-        <a href="mailto:tanmayshet2010@gmail.com" class="btn">Contact me</a>
-      </div>
-    </section>
+      </section>
+    </main>
+    <script src="script.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

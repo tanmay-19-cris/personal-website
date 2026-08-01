@@ -219,6 +219,7 @@
       }
     </style>
   </head>
+
   <body>
     <header>
       <div class="logo">Thunder</div>
@@ -232,15 +233,6 @@
         <a href="extras.html">Extras</a>
       </nav>
     </header>
-
-    <script>
-      const menuBtn = document.getElementById("menu-btn");
-      const navbar = document.getElementById("navbar");
-
-      menuBtn.addEventListener("click", () => {
-        navbar.classList.toggle("active");
-      });
-    </script>
 
     <main>
       <section class="hero">
@@ -299,7 +291,31 @@
             <a href="reactiontest.html" class="play-btn">Play Game</a>
           </div>
         </div>
+
+        <div class="game-card">
+          <div class="game-icon">⌨️</div>
+
+          <div class="game-content">
+            <h2>Typing Speed Test</h2>
+
+            <p>
+              Test your typing speed and accuracy with this simple yet engaging
+              game. Improve your skills over time and compete with friends to
+              see who's the fastest.
+            </p>
+
+            <div class="tags">
+              <span>JavaScript</span>
+              <span>Typing</span>
+              <span>Speed</span>
+              <span>Accuracy</span>
+            </div>
+
+            <a href="typing.html" class="play-btn">Play Game</a>
+          </div>
+        </div>
       </section>
     </main>
+    <script src="script.js"></script>
   </body>
 </html>

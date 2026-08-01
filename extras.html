@@ -68,23 +68,11 @@
         margin-left: 220px;
         min-height: 100vh;
         padding: 4rem 2rem;
-        position: relative;
-      }
-
-      main::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-        background-size: 40px 40px;
-        z-index: -1;
       }
 
       .hero {
         text-align: center;
-        margin-bottom: 3rem;
+        margin-bottom: 4rem;
       }
 
       .hero h1 {
@@ -104,92 +92,33 @@
         margin: 0 auto;
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        gap: 4rem;
       }
 
-      .extra-card {
-        display: flex;
-        align-items: flex-start;
-        gap: 2rem;
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(183, 75, 75, 0.25);
-        border-radius: 24px;
-        padding: 2rem;
-        backdrop-filter: blur(10px);
-        transition: 0.3s ease;
-      }
-
-      .extra-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 0 30px rgba(183, 75, 75, 0.25);
-      }
-
-      .extra-icon {
-        width: 90px;
-        height: 90px;
-        border-radius: 20px;
-        background: rgba(183, 75, 75, 0.12);
-        border: 1px solid rgba(183, 75, 75, 0.3);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.6rem;
-        font-weight: 600;
-        color: #b74b4b;
-        flex-shrink: 0;
-      }
-
-      .extra-content {
-        flex: 1;
-      }
-
-      .extra-content h2 {
+      .section h2 {
         color: #b74b4b;
         font-size: 2rem;
         margin-bottom: 1rem;
       }
 
-      .extra-content p {
+      .section p {
         color: #ddd;
-        line-height: 1.9;
-        margin-bottom: 1.2rem;
-      }
-
-      .tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.8rem;
-      }
-
-      .tags span {
-        background: #141414;
-        border: 1px solid #b74b4b;
-        color: white;
-        padding: 0.5rem 0.9rem;
-        border-radius: 999px;
-        font-size: 0.9rem;
-        transition: 0.3s;
-      }
-
-      .tags span:hover {
-        background: #b74b4b;
-        color: black;
-        transform: scale(1.05);
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
       }
 
       .gallery {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
-        margin-top: 1rem;
       }
 
       .gallery img {
         width: 100%;
-        aspect-ratio: 1/1;
+        aspect-ratio: 1 / 1;
         object-fit: cover;
-        border-radius: 16px;
-        border: 1px solid rgba(183, 75, 75, 0.35);
+        border-radius: 12px;
+        border: 1px solid rgba(183, 75, 75, 0.3);
         cursor: pointer;
         transition: 0.3s;
       }
@@ -211,7 +140,7 @@
       .lightbox img {
         max-width: 90%;
         max-height: 90%;
-        border-radius: 16px;
+        border-radius: 12px;
       }
 
       .close {
@@ -223,34 +152,8 @@
         cursor: pointer;
       }
 
-      .skills-window {
-        max-width: 800px;
-        margin: 4rem auto;
-        padding: 2rem;
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(183, 75, 75, 0.25);
-        border-radius: 24px;
-        backdrop-filter: blur(10px);
-        transition: 0.3s ease;
-      }
-
-      .skills-window:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 0 30px rgba(183, 75, 75, 0.25);
-      }
-
-      .skills-window h2 {
-        color: #b74b4b;
-        font-size: 2rem;
-        margin-bottom: 2rem;
-      }
-
       .skill {
         margin-bottom: 1.5rem;
-      }
-
-      .skill:last-child {
-        margin-bottom: 0;
       }
 
       .skill-name {
@@ -273,7 +176,6 @@
         height: 100%;
         border-radius: 999px;
         background: #b74b4b;
-        animation: fillBar 1.5s ease forwards;
       }
 
       .html {
@@ -289,9 +191,26 @@
         width: 70%;
       }
 
-      @keyframes fillBar {
-        from {
-          width: 0;
+      @media (max-width: 768px) {
+        header {
+          position: relative;
+          width: 100%;
+          height: auto;
+          border-right: none;
+          border-bottom: 1px solid rgba(183, 75, 75, 0.25);
+        }
+
+        main {
+          margin-left: 0;
+          padding: 2rem 1rem;
+        }
+
+        .hero h1 {
+          font-size: 2.3rem;
+        }
+
+        .gallery {
+          grid-template-columns: repeat(2, 1fr);
         }
       }
     </style>
@@ -322,56 +241,41 @@
       </section>
 
       <section class="extras">
-        <div class="extra-card">
-          <div class="extra-icon">📸</div>
+        <div class="section">
+          <h2>Screenshot Gallery</h2>
 
-          <div class="extra-content">
-            <h2>Screenshot Gallery</h2>
+          <p>
+            A collection of my Minecraft builds, survival worlds, redstone
+            creations, and memorable moments from different projects and
+            servers.
+          </p>
 
-            <p>
-              A collection of my Minecraft builds, survival worlds, redstone
-              creations, and memorable moments from different projects and
-              servers.
-            </p>
-
-            <div class="gallery">
-              <img src="1.png" alt="Build 1" onclick="openLightbox(this.src)" />
-              <img src="2.png" alt="Build 2" onclick="openLightbox(this.src)" />
-              <img src="3.png" alt="Build 3" onclick="openLightbox(this.src)" />
-              <img src="4.png" alt="Build 4" onclick="openLightbox(this.src)" />
-              <img src="5.png" alt="Build 5" onclick="openLightbox(this.src)" />
-            </div>
-
-            <div id="lightbox" class="lightbox">
-              <span class="close" onclick="closeLightbox()">&times;</span>
-              <img id="lightbox-img" src="" alt="Preview" />
-            </div>
-
-            <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-              <span class="close">&times;</span>
-              <img id="lightbox-img" src="" alt="Preview" />
-            </div>
-
-            <script>
-              function openLightbox(src) {
-                document.getElementById("lightbox").style.display = "flex";
-                document.getElementById("lightbox-img").src = src;
-              }
-
-              function closeLightbox() {
-                document.getElementById("lightbox").style.display = "none";
-              }
-            </script>
-
-            <div class="tags" style="margin-top: 1.2rem">
-              <span>Gallery</span>
-              <span>Builds</span>
-              <span>Worlds</span>
-            </div>
+          <div class="gallery">
+            <img src="1.png" alt="Build 1" onclick="openLightbox(this.src)" />
+            <img src="2.png" alt="Build 2" onclick="openLightbox(this.src)" />
+            <img src="3.png" alt="Build 3" onclick="openLightbox(this.src)" />
+            <img src="4.png" alt="Build 4" onclick="openLightbox(this.src)" />
+            <img src="5.png" alt="Build 5" onclick="openLightbox(this.src)" />
           </div>
+
+          <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+            <span class="close">&times;</span>
+            <img id="lightbox-img" src="" alt="Preview" />
+          </div>
+
+          <script>
+            function openLightbox(src) {
+              document.getElementById("lightbox").style.display = "flex";
+              document.getElementById("lightbox-img").src = src;
+            }
+
+            function closeLightbox() {
+              document.getElementById("lightbox").style.display = "none";
+            }
+          </script>
         </div>
 
-        <section class="skills-window">
+        <div class="section">
           <h2>My Skills</h2>
 
           <div class="skill">
@@ -413,44 +317,59 @@
               <div class="skill-fill godot"></div>
             </div>
           </div>
-        </section>
+        </div>
 
-        <div class="extra-card">
-          <div class="extra-icon">⌛</div>
+        <div class="section">
+          <h2>More Coming Soon</h2>
 
-          <div class="extra-content">
-            <h2>More Coming Soon</h2>
-
-            <p>
-              I'm constantly experimenting with new ideas, so this page will
-              continue to grow with additional content, screenshots, and future
-              projects.
-            </p>
-
-            <div class="tags">
-              <span>Future</span>
-              <span>Experiments</span>
-              <span>Updates</span>
-            </div>
-          </div>
+          <p>
+            I'm constantly experimenting with new ideas, so this page will
+            continue to grow with additional content, screenshots, and future
+            projects.
+          </p>
         </div>
       </section>
     </main>
 
-    <h2 style="text-align: center">Ohh, You're leaving?</h2>
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+      <span class="close">&times;</span>
+      <img id="lightbox-img" src="" alt="Preview" />
+    </div>
+    <section style="text-align: center; padding: 4rem 1rem">
+      <h2>That's it!</h2>
 
-    <img
-      src="sp1.gif"
-      alt="sad Pikachu"
-      style="display: block; margin: 0 auto; width: 290px"
-    />
-    <h2 style="text-align: center">Well, I hope you come back soon!</h2>
-    <img
-      src="sp2.gif"
-      alt="sad Pikachu"
-      style="display: block; margin: 0 auto; width: 200px"
-    />
+      <h2>Ohh, You're leaving?</h2>
+
+      <img
+        src="sp1.gif"
+        alt="sad Pikachu"
+        style="display: block; margin: 1rem auto; width: 290px"
+      />
+
+      <h2>Well, I hope you come back soon!</h2>
+
+      <img
+        src="sp2.gif"
+        alt="happy Pikachu"
+        style="display: block; margin: 1rem auto; width: 200px"
+      />
+    </section>
+
+    <h2 id="byeText" style="text-align: center">Pi-kaPika!</h2>
+
+    <div style="text-align: center; margin-top: 1rem">
+      <button onclick="changeText()" class="play-btn">Translate</button>
+    </div>
+
+    <script>
+      function changeText() {
+        const text = document.getElementById("byeText");
+        text.textContent =
+          text.textContent === "Pi-kaPika!" ? "Goodbye!" : "Pi-kaPika!";
+      }
+    </script>
     <br />
-    <script src="script.js"></script>
+    <p></p>
+    <br />
   </body>
 </html>

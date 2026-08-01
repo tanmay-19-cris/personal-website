@@ -68,23 +68,11 @@
         margin-left: 220px;
         min-height: 100vh;
         padding: 4rem 2rem;
-        position: relative;
-      }
-
-      main::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-        background-size: 40px 40px;
-        z-index: -1;
       }
 
       .hero {
         text-align: center;
-        margin-bottom: 3rem;
+        margin-bottom: 4rem;
       }
 
       .hero h1 {
@@ -104,84 +92,36 @@
         margin: 0 auto;
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        gap: 4rem;
       }
 
-      .game-card {
-        display: flex;
-        align-items: flex-start;
-        gap: 2rem;
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(183, 75, 75, 0.25);
-        border-radius: 24px;
-        padding: 2rem;
-        backdrop-filter: blur(10px);
-        transition: 0.3s ease;
-      }
-
-      .game-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 0 30px rgba(183, 75, 75, 0.25);
-      }
-
-      .game-icon {
-        width: 90px;
-        height: 90px;
-        border-radius: 20px;
-        background: rgba(183, 75, 75, 0.12);
-        border: 1px solid rgba(183, 75, 75, 0.3);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2.5rem;
-        flex-shrink: 0;
-      }
-
-      .game-content {
-        flex: 1;
-      }
-
-      .game-content h2 {
+      .game h2 {
         color: #b74b4b;
         font-size: 2rem;
         margin-bottom: 1rem;
       }
 
-      .game-content p {
+      .game-image {
+        width: 100%;
+        max-width: 1000px;
+        height: auto;
+        border-radius: 12px;
+        border: 1px solid rgba(183, 75, 75, 0.3);
+        margin-bottom: 1.5rem;
+      }
+
+      .game p {
         color: #ddd;
-        line-height: 1.9;
-        margin-bottom: 1.2rem;
-      }
-
-      .tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.8rem;
-      }
-
-      .tags span {
-        background: #141414;
-        border: 1px solid #b74b4b;
-        color: white;
-        padding: 0.5rem 0.9rem;
-        border-radius: 999px;
-        font-size: 0.9rem;
-        transition: 0.3s;
-      }
-
-      .tags span:hover {
-        background: #b74b4b;
-        color: black;
-        transform: scale(1.05);
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
       }
 
       .play-btn {
         display: inline-block;
-        margin-top: 1rem;
-        padding: 0.8rem 1.5rem;
+        padding: 0.75rem 1.4rem;
         border: 1px solid #b74b4b;
         border-radius: 999px;
-        color: #b74b4b;
+        color: white;
         text-decoration: none;
         transition: 0.3s;
       }
@@ -209,12 +149,8 @@
           font-size: 2.3rem;
         }
 
-        .game-card {
-          flex-direction: column;
-        }
-
-        .tags {
-          justify-content: center;
+        .game-image {
+          width: 100%;
         }
       }
     </style>
@@ -246,76 +182,42 @@
       </section>
 
       <section class="games">
-        <div class="game-card">
-          <div class="game-icon">🎲</div>
+        <div class="game">
+          <h2>Lucky Draw</h2>
+          <p>
+            A simple random item generator inspired by Minecraft. Every click
+            gives you a completely random item, making it surprisingly addictive
+            and fun to play with friends.
+          </p>
 
-          <div class="game-content">
-            <h2>Lucky Draw</h2>
-
-            <p>
-              A simple random item generator inspired by Minecraft. Every click
-              gives you a completely random item, making it surprisingly
-              addictive and fun to play with friends.
-            </p>
-
-            <div class="tags">
-              <span>JavaScript</span>
-              <span>Random</span>
-              <span>Minecraft</span>
-              <span>Browser Game</span>
-            </div>
-
-            <a href="luckdraw.html" class="play-btn">Play Game</a>
-          </div>
+          <a href="luckdraw.html" class="play-btn">Play Game</a>
         </div>
 
-        <div class="game-card">
-          <div class="game-icon">⚡</div>
+        <div class="game">
+          <h2>Reaction Test</h2>
+          <p>
+            A fast-paced reaction speed game where you click as soon as the
+            screen changes color. It's a fun way to test your reflexes and
+            improve timing accuracy.
+          </p>
 
-          <div class="game-content">
-            <h2>Reaction Test</h2>
-
-            <p>
-              A fast-paced reaction speed game where you click as soon as the
-              screen changes color. It's a fun way to test your reflexes and
-              improve timing accuracy.
-            </p>
-
-            <div class="tags">
-              <span>JavaScript</span>
-              <span>Reaction</span>
-              <span>Speed</span>
-              <span>Timing</span>
-            </div>
-
-            <a href="reactiontest.html" class="play-btn">Play Game</a>
-          </div>
+          <a href="reactiontest.html" class="play-btn">Play Game</a>
         </div>
 
-        <div class="game-card">
-          <div class="game-icon">⌨️</div>
+        <div class="game">
+          <h2>Typing Speed Test</h2>
 
-          <div class="game-content">
-            <h2>Typing Speed Test</h2>
+          <p>
+            Test your typing speed and accuracy with this simple yet engaging
+            game. Improve your skills over time and compete with friends to see
+            who's the fastest.
+          </p>
 
-            <p>
-              Test your typing speed and accuracy with this simple yet engaging
-              game. Improve your skills over time and compete with friends to
-              see who's the fastest.
-            </p>
-
-            <div class="tags">
-              <span>JavaScript</span>
-              <span>Typing</span>
-              <span>Speed</span>
-              <span>Accuracy</span>
-            </div>
-
-            <a href="typing.html" class="play-btn">Play Game</a>
-          </div>
+          <a href="typing.html" class="play-btn">Play Game</a>
         </div>
       </section>
     </main>
+
     <script src="script.js"></script>
   </body>
 </html>

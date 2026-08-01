@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -68,23 +67,11 @@
         margin-left: 220px;
         min-height: 100vh;
         padding: 4rem 2rem;
-        position: relative;
-      }
-
-      main::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-        background-size: 40px 40px;
-        z-index: -1;
       }
 
       .hero {
         text-align: center;
-        margin-bottom: 3rem;
+        margin-bottom: 4rem;
       }
 
       .hero h1 {
@@ -100,79 +87,47 @@
       }
 
       .projects {
-        max-width: 1000px;
+        max-width: 1100px;
         margin: 0 auto;
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        gap: 4rem;
       }
 
-      .project-card {
-        display: flex;
-        align-items: flex-start;
-        gap: 2rem;
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(183, 75, 75, 0.25);
-        border-radius: 24px;
-        padding: 2rem;
-        backdrop-filter: blur(10px);
-        transition: 0.3s ease;
-      }
-
-      .project-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 0 30px rgba(183, 75, 75, 0.25);
-      }
-
-      .project-icon {
-        width: 90px;
-        height: 90px;
-        border-radius: 20px;
-        background: rgba(183, 75, 75, 0.12);
-        border: 1px solid rgba(183, 75, 75, 0.3);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2.5rem;
-        flex-shrink: 0;
-      }
-
-      .project-content {
-        flex: 1;
-      }
-
-      .project-content h2 {
+      .project h2 {
         color: #b74b4b;
         font-size: 2rem;
         margin-bottom: 1rem;
       }
 
-      .project-content p {
+      .project-image {
+        width: 100%;
+        max-width: 1000px;
+        height: auto;
+        border-radius: 12px;
+        border: 1px solid rgba(183, 75, 75, 0.3);
+        margin-bottom: 1.5rem;
+      }
+
+      .project p {
         color: #ddd;
-        line-height: 1.9;
-        margin-bottom: 1.2rem;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
       }
 
-      .tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.8rem;
-      }
-
-      .tags span {
-        background: #141414;
+      .play-btn {
+        display: inline-block;
+        padding: 0.75rem 1.4rem;
         border: 1px solid #b74b4b;
-        color: white;
-        padding: 0.5rem 0.9rem;
         border-radius: 999px;
-        font-size: 0.9rem;
+        color: white;
+        text-decoration: none;
         transition: 0.3s;
       }
 
-      .tags span:hover {
+      .play-btn:hover {
         background: #b74b4b;
         color: black;
-        transform: scale(1.05);
       }
 
       @media (max-width: 768px) {
@@ -193,16 +148,13 @@
           font-size: 2.3rem;
         }
 
-        .project-card {
-          flex-direction: column;
-        }
-
-        .tags {
-          justify-content: center;
+        .project-image {
+          width: 100%;
         }
       }
     </style>
   </head>
+
   <body>
     <header>
       <div class="logo">Thunder</div>
@@ -217,15 +169,6 @@
       </nav>
     </header>
 
-    <script>
-      const menuBtn = document.getElementById("menu-btn");
-      const navbar = document.getElementById("navbar");
-
-      menuBtn.addEventListener("click", () => {
-        navbar.classList.toggle("active");
-      });
-    </script>
-
     <main>
       <section class="hero">
         <h1>Projects</h1>
@@ -238,55 +181,44 @@
       </section>
 
       <section class="projects">
-        <div class="project-card">
-          <div class="project-icon">🎮</div>
+        <div class="project">
+          <h2>2D Platformer Game</h2>
 
-          <div class="project-content">
-            <h2>2D Platformer Game</h2>
+          <img src="game.PNG" alt="2D Platformer Game" class="project-image" />
 
-            <p>
-              My first proper game made in the Godot Engine. I worked on player
-              movement, jumping, collisions, level design, animations, and basic
-              game mechanics. This project taught me how a real game is
-              structured and helped me get comfortable with game development and
-              problem solving.
-            </p>
+          <p>
+            My first proper game made in the Godot Engine. I worked on player
+            movement, jumping, collisions, level design, animations, and basic
+            game mechanics. This project taught me how a real game is structured
+            and helped me get comfortable with game development and problem
+            solving.
+          </p>
 
-            <div class="tags">
-              <a href="https://tanmay19.itch.io/ancient-adventure"
-                ><span>play now</span></a
-              ><br />
-              <span>2D</span>
-              <span>Platformer</span>
-              <span>Game Dev</span>
-            </div>
-          </div>
+          <a href="https://tanmay19.itch.io/ancient-adventure" class="play-btn"
+            >Play Now</a
+          >
         </div>
 
-        <div class="project-card">
-          <div class="project-icon">💻</div>
+        <div class="project">
+          <h2>Portfolio Website</h2>
 
-          <div class="project-content">
-            <h2>Portfolio Website</h2>
+          <img
+            src="portfolio.png"
+            alt="Portfolio Website"
+            class="project-image"
+          />
 
-            <p>
-              This portfolio website was built completely from scratch using
-              HTML, CSS, and JavaScript. I designed the layout, responsive
-              pages, sidebar navigation, animations, and overall visual style to
-              create a clean and modern personal portfolio that showcases my
-              work and interests.
-            </p>
-
-            <div class="tags">
-              <span>HTML</span>
-              <span>CSS</span>
-              <span>JavaScript</span>
-              <span>Responsive</span>
-            </div>
-          </div>
+          <p>
+            This portfolio website was built completely from scratch using HTML,
+            CSS, and JavaScript. I designed the layout, responsive pages,
+            sidebar navigation, animations, and overall visual style to create a
+            clean and modern personal portfolio that showcases my work and
+            interests.
+          </p>
         </div>
       </section>
     </main>
+
     <script src="script.js"></script>
   </body>
 </html>

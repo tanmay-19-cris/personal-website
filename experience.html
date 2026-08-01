@@ -68,23 +68,11 @@
         margin-left: 220px;
         min-height: 100vh;
         padding: 4rem 2rem;
-        position: relative;
-      }
-
-      main::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-        background-size: 40px 40px;
-        z-index: -1;
       }
 
       .hero {
         text-align: center;
-        margin-bottom: 3rem;
+        margin-bottom: 4rem;
       }
 
       .hero h1 {
@@ -99,80 +87,23 @@
         line-height: 1.8;
       }
 
-      .projects {
-        max-width: 1000px;
+      .experience {
+        max-width: 900px;
         margin: 0 auto;
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        gap: 3rem;
       }
 
-      .project-card {
-        display: flex;
-        align-items: flex-start;
-        gap: 2rem;
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(183, 75, 75, 0.25);
-        border-radius: 24px;
-        padding: 2rem;
-        backdrop-filter: blur(10px);
-        transition: 0.3s ease;
-      }
-
-      .project-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 0 30px rgba(183, 75, 75, 0.25);
-      }
-
-      .project-icon {
-        width: 90px;
-        height: 90px;
-        border-radius: 20px;
-        background: rgba(183, 75, 75, 0.12);
-        border: 1px solid rgba(183, 75, 75, 0.3);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2.5rem;
-        flex-shrink: 0;
-      }
-
-      .project-content {
-        flex: 1;
-      }
-
-      .project-content h2 {
+      .section h2 {
         color: #b74b4b;
         font-size: 2rem;
         margin-bottom: 1rem;
       }
 
-      .project-content p {
+      .section p {
         color: #ddd;
         line-height: 1.9;
-        margin-bottom: 1.2rem;
-      }
-
-      .tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.8rem;
-      }
-
-      .tags span {
-        background: #141414;
-        border: 1px solid #b74b4b;
-        color: white;
-        padding: 0.5rem 0.9rem;
-        border-radius: 999px;
-        font-size: 0.9rem;
-        transition: 0.3s;
-      }
-
-      .tags span:hover {
-        background: #b74b4b;
-        color: black;
-        transform: scale(1.05);
       }
 
       @media (max-width: 768px) {
@@ -192,17 +123,10 @@
         .hero h1 {
           font-size: 2.3rem;
         }
-
-        .project-card {
-          flex-direction: column;
-        }
-
-        .tags {
-          justify-content: center;
-        }
       }
     </style>
   </head>
+
   <body>
     <header>
       <div class="logo">Thunder</div>
@@ -217,15 +141,6 @@
       </nav>
     </header>
 
-    <script>
-      const menuBtn = document.getElementById("menu-btn");
-      const navbar = document.getElementById("navbar");
-
-      menuBtn.addEventListener("click", () => {
-        navbar.classList.toggle("active");
-      });
-    </script>
-
     <main>
       <section class="hero">
         <h1>Experience</h1>
@@ -237,100 +152,57 @@
         </p>
       </section>
 
-      <section class="projects">
-        <div class="project-card">
-          <div class="project-icon">🎮</div>
+      <section class="experience">
+        <div class="section">
+          <h2>2D Platformer Game</h2>
 
-          <div class="project-content">
-            <h2>2D Platformer Game</h2>
-
-            <p>
-              I built a 2D platformer game using the Godot Engine. I learned
-              level design, player movement, animations, collision systems, and
-              how to turn random ideas into a playable game. This was my first
-              proper game project and it taught me a lot about problem solving
-              and game mechanics.
-            </p>
-
-            <div class="tags">
-              <span>Godot</span>
-              <span>2D</span>
-              <span>Game Dev</span>
-              <span>Pixel Art</span>
-            </div>
-          </div>
+          <p>
+            I built a 2D platformer game using the Godot Engine. I learned level
+            design, player movement, animations, collision systems, and how to
+            turn random ideas into a playable game. This was my first proper
+            game project and it taught me a lot about problem solving and game
+            mechanics.
+          </p>
         </div>
 
-        <div class="project-card">
-          <div class="project-icon">💻</div>
+        <div class="section">
+          <h2>Portfolio Website</h2>
 
-          <div class="project-content">
-            <h2>Portfolio Website</h2>
-
-            <p>
-              I created this portfolio website from scratch using HTML, CSS, and
-              JavaScript. I worked on layouts, animations, responsiveness,
-              navigation, and making the whole site feel smooth and personal.
-              This is one of the projects I'm most proud of because it combines
-              everything I've been learning recently.
-            </p>
-
-            <div class="tags">
-              <span>HTML</span>
-              <span>CSS</span>
-              <span>JavaScript</span>
-              <span>Responsive</span>
-            </div>
-          </div>
+          <p>
+            I created this portfolio website from scratch using HTML, CSS, and
+            JavaScript. I worked on layouts, animations, responsiveness,
+            navigation, and making the whole site feel smooth and personal. This
+            is one of the projects I'm most proud of because it combines
+            everything I've been learning recently.
+          </p>
         </div>
 
-        <div class="project-card">
-          <div class="project-icon">⛏️</div>
+        <div class="section">
+          <h2>Minecraft Building</h2>
 
-          <div class="project-content">
-            <h2>Minecraft Building</h2>
-
-            <p>
-              I've spent countless hours designing survival bases, headquarters,
-              and large-scale Minecraft projects. This helped me become more
-              creative, patient, and better at planning bigger ideas before
-              actually building them. Minecraft is still one of my favorite
-              places to experiment with architecture and design.
-            </p>
-
-            <div class="tags">
-              <span>Minecraft</span>
-              <span>Building</span>
-              <span>Survival</span>
-              <span>Creative</span>
-            </div>
-          </div>
+          <p>
+            I've spent countless hours designing survival bases, headquarters,
+            and large-scale Minecraft projects. This helped me become more
+            creative, patient, and better at planning bigger ideas before
+            actually building them. Minecraft is still one of my favorite places
+            to experiment with architecture and design.
+          </p>
         </div>
 
-        <div class="project-card">
-          <div class="project-icon">⚽</div>
+        <div class="section">
+          <h2>Football Journey</h2>
 
-          <div class="project-content">
-            <h2>Football Journey</h2>
-
-            <p>
-              Football has been one of the biggest parts of my life since 2017.
-              It taught me teamwork, discipline, leadership, and how to keep
-              improving even when things don't go the way I want. I've played
-              for teams, competed in matches, and grown a lot both on and off
-              the field.
-            </p>
-
-            <div class="tags">
-              <span>Football</span>
-              <span>Teamwork</span>
-              <span>Captain</span>
-              <span>Discipline</span>
-            </div>
-          </div>
+          <p>
+            Football has been one of the biggest parts of my life since 2017. It
+            taught me teamwork, discipline, leadership, and how to keep
+            improving even when things don't go the way I want. I've played for
+            teams, competed in matches, and grown a lot both on and off the
+            field.
+          </p>
         </div>
       </section>
     </main>
+
     <script src="script.js"></script>
   </body>
 </html>

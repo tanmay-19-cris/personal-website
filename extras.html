@@ -213,6 +213,83 @@
           grid-template-columns: repeat(2, 1fr);
         }
       }
+
+      #spiderman {
+        position: fixed;
+        top: 0;
+        right: 20px;
+        width: 160px;
+        height: auto;
+        cursor: pointer;
+        z-index: 9999;
+        transform-origin: top center;
+        animation: spideyHang 2.5s ease-in-out infinite;
+      }
+
+      @keyframes spideyHang {
+        0%,
+        100% {
+          transform: rotate(2deg);
+        }
+        50% {
+          transform: rotate(-2deg);
+        }
+      }
+
+      /* Jumpscare styles */
+
+      #jumpscare {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: black;
+        justify-content: center;
+        align-items: center;
+        z-index: 100000;
+      }
+
+      #jumpscare img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        animation: venomShake 0.05s infinite;
+      }
+
+      @keyframes venomShake {
+        0% {
+          transform: translate(0, 0) rotate(0deg) scale(1);
+        }
+        10% {
+          transform: translate(-20px, 15px) rotate(-3deg) scale(1.03);
+        }
+        20% {
+          transform: translate(20px, -15px) rotate(3deg) scale(1.04);
+        }
+        30% {
+          transform: translate(-25px, -10px) rotate(-4deg) scale(1.05);
+        }
+        40% {
+          transform: translate(25px, 10px) rotate(4deg) scale(1.06);
+        }
+        50% {
+          transform: translate(-18px, 18px) rotate(-3deg) scale(1.05);
+        }
+        60% {
+          transform: translate(18px, -18px) rotate(3deg) scale(1.04);
+        }
+        70% {
+          transform: translate(-22px, 8px) rotate(-4deg) scale(1.06);
+        }
+        80% {
+          transform: translate(22px, -8px) rotate(4deg) scale(1.05);
+        }
+        90% {
+          transform: translate(-16px, -16px) rotate(-3deg) scale(1.04);
+        }
+        100% {
+          transform: translate(16px, 16px) rotate(3deg) scale(1.06);
+        }
+      }
     </style>
   </head>
 
@@ -229,6 +306,60 @@
         <a href="extras.html" class="active">Extras</a>
       </nav>
     </header>
+
+    <!-- Spider-Man -->
+    <img id="spiderman" src="sm1.png" alt="Spider-Man" />
+
+    <!-- Spider-Man background music -->
+    <audio id="bgm" loop autoplay>
+      <source src="" type="audio/mpeg" />
+    </audio>
+
+    <!-- Full-screen jumpscare -->
+    <div id="jumpscare">
+      <img src="venom.gif" alt="Jumpscare" />
+    </div>
+
+    <script>
+      const bgm = document.getElementById("bgm");
+      const spiderman = document.getElementById("spiderman");
+      const jumpscare = document.getElementById("jumpscare");
+
+      const scream = new Audio("scream.mp3");
+      scream.volume = 1.0;
+      scream.play();
+
+      // Try autoplay immediately
+      bgm.play().catch(() => {
+        // If browser blocks autoplay, start on first click anywhere
+        document.addEventListener(
+          "click",
+          () => {
+            bgm.play();
+          },
+          { once: true },
+        );
+      });
+
+      spiderman.addEventListener("click", () => {
+        // Stop Spider-Man music
+        bgm.pause();
+        bgm.currentTime = 0;
+
+        // Show jumpscare
+        jumpscare.style.display = "flex";
+
+        // Play scream sound
+        const scream = new Audio("undertale-chara-jumpscare.mp3");
+        scream.volume = 1.0;
+        scream.play();
+
+        // Hide jumpscare after 2 seconds
+        setTimeout(() => {
+          jumpscare.style.display = "none";
+        }, 2500);
+      });
+    </script>
 
     <main>
       <section class="hero">

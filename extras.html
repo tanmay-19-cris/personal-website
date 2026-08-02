@@ -434,22 +434,29 @@
     </script>
 
     <script>
-      async function updateVisitors() {
-        const visitRes = await fetch(
-          "https://api.countapi.xyz/hit/thunder-hc/home",
-        );
-        const visitData = await visitRes.json();
-        document.getElementById("visit-count").textContent = visitData.value;
+      window.addEventListener("DOMContentLoaded", async () => {
+        try {
+          const visitRes = await fetch(
+            "https://api.countapi.xyz/hit/thunder-hc/home",
+          );
+          const visitData = await visitRes.json();
+          document.getElementById("visit-count").textContent = visitData.value;
 
-        const visitorRes = await fetch(
-          "https://api.countapi.xyz/hit/thunder-hc/visitors",
-        );
-        const visitorData = await visitorRes.json();
-        document.getElementById("visitor-count").textContent =
-          visitorData.value;
-      }
+          const visitorRes = await fetch(
+            "https://api.countapi.xyz/hit/thunder-hc/visitors",
+          );
+          const visitorData = await visitorRes.json();
+          document.getElementById("visitor-count").textContent =
+            visitorData.value;
 
-      updateVisitors();
+          document.getElementById("online-count").textContent = "1";
+        } catch (e) {
+          document.getElementById("visit-count").textContent = "0";
+          document.getElementById("visitor-count").textContent = "0";
+          document.getElementById("online-count").textContent = "0";
+          console.error(e);
+        }
+      });
     </script>
 
     <br />

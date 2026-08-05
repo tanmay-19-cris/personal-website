@@ -1,44 +1,37 @@
-let intro = document.querySelector('.intro');
-let logo = document.querySelector('.logo-header');
-let logoSpan = document.querySelectorAll('.logo');
+const intro = document.querySelector(".intro");
+const logoSpans = document.querySelectorAll(".logo-header .logo");
 
-if (performance.getEntriesByType('navigation')[0].type === 'reload') {
-    sessionStorage.removeItem('introPlayed');
+// Show intro only on refresh
+if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
+  sessionStorage.removeItem("introPlayed");
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener("DOMContentLoaded", () => {
+  if (sessionStorage.getItem("introPlayed")) {
+    intro.style.display = "none";
+    return;
+  }
 
-    if (sessionStorage.getItem('introPlayed')) {
-        intro.style.display = 'none';
-        return;
-    }
+  sessionStorage.setItem("introPlayed", "true");
 
-    sessionStorage.setItem('introPlayed', 'true');
+  logoSpans.forEach((span, i) => {
+    setTimeout(() => span.classList.add("active"), i * 300);
+  });
 
-    setTimeout(() => {
+  setTimeout(() => {
+    logoSpans.forEach((span, i) => {
+      setTimeout(() => {
+        span.classList.remove("active");
+        span.classList.add("fade");
+      }, i * 100);
+    });
+  }, 1800);
 
-        logoSpan.forEach((span, idx) => {
-            setTimeout(() => {
-                span.classList.add('active');
-            }, (idx + 1) * 300)
-        });
+  setTimeout(() => {
+    intro.style.top = "-100vh";
+  }, 2600);
 
-        setTimeout(() => {
-            logoSpan.forEach((span, idx) => {
-
-                setTimeout(() => {
-                    span.classList.remove('active');
-                    span.classList.add('fade');
-                }, (idx + 1) * 50)
-            })
-        }, 4000);
-
-        setTimeout(() => {
-            intro.style.top = '-100vh';
-        }, 1200)
-
-    }, 1200)
-
-})
-
-
+  setTimeout(() => {
+    intro.style.display = "none";
+  }, 3400);
+});

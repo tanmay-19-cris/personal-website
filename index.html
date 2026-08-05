@@ -344,6 +344,95 @@
           font-size: 3rem;
         }
       }
+
+      .left-side {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        width: 240px;
+        flex-shrink: 0;
+      }
+
+      #music-player {
+        width: 100%;
+        background: rgba(20, 20, 20, 0.95);
+        border: 1px solid rgba(183, 75, 75, 0.35);
+        border-radius: 18px;
+        padding: 14px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .player-info {
+        text-align: center;
+      }
+
+      #track-title {
+        color: #fff;
+        font-size: 0.95rem;
+        margin-bottom: 10px;
+      }
+
+      .player-controls {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .player-controls button {
+        background: #111;
+        color: #fff;
+        border: 1px solid rgba(183, 75, 75, 0.35);
+        border-radius: 999px;
+        width: 38px;
+        height: 38px;
+        cursor: pointer;
+      }
+
+      .player-controls button:hover {
+        background: #b74b4b;
+        color: #000;
+      }
+
+      .sakura-container {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 9999;
+      }
+
+      .sakura-petal {
+        position: absolute;
+        top: -10%;
+        background: url("sakura.png") no-repeat center/contain;
+        opacity: 0.95;
+        will-change: transform, opacity;
+      }
+
+      @keyframes sakuraFloat {
+        0% {
+          transform: translate3d(0, -10vh, 0) rotate(0deg) scale(var(--scale));
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.95;
+        }
+        30% {
+          transform: translate3d(var(--drift1), 30vh, 0) rotate(120deg)
+            scale(var(--scale));
+        }
+        60% {
+          transform: translate3d(var(--drift2), 65vh, 0) rotate(240deg)
+            scale(calc(var(--scale) * 1.03));
+        }
+        100% {
+          transform: translate3d(var(--drift3), 115vh, 0) rotate(360deg)
+            scale(var(--scale));
+          opacity: 0;
+        }
+      }
     </style>
   </head>
 
@@ -374,11 +463,22 @@
 
     <main>
       <section class="hero">
-        <img src="Main.jpg" alt="Thunder" class="profile-img" />
+        <div class="left-side">
+          <img src="Main.jpg" alt="Thunder" class="profile-img" />
+
+          <div id="music-player">
+            <div class="player-info">
+              <div id="track-title">Minecraft - Sweden</div>
+              <div class="player-controls">
+                <button id="prev-btn">◀◀</button>
+                <button id="play-btn">▶</button>
+                <button id="next-btn">▶▶</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="hero-content">
-          <p>Left click anywhere to trick the cat!</p>
-
           <h1>Hi, it's <span>Thunder</span></h1>
 
           <p>
@@ -392,11 +492,9 @@
             <a href="https://github.com/tanmay-19-cris"
               ><i class="fa-brands fa-github"></i
             ></a>
-
             <a href="https://www.instagram.com/tanmya.19/"
               ><i class="fa-brands fa-instagram"></i
             ></a>
-
             <a href="https://hackclub.enterprise.slack.com/team/U0AEXBFEP8S"
               ><i class="fa-brands fa-slack"></i
             ></a>
@@ -405,6 +503,8 @@
           <a href="mailto:tanmayshet2010@gmail.com" class="btn">Contact Me</a>
         </div>
       </section>
+
+      <audio id="bgm" preload="auto"></audio>
     </main>
 
     <script src="script.js"></script>
@@ -449,6 +549,125 @@
           }, 2300);
         }, 300);
       });
+    </script>
+
+    <script>
+      const tracks = [
+        {
+          title: "Minecraft - Wet Hands",
+          file: "1-13. Wet Hands.mp3",
+        },
+        { title: "Minecraft - C418", file: "rizzlas-rizzlas-c418-224649.mp3" },
+        {
+          title: "Minecraft - Subwoofer Lullaby",
+          file: "Subwoofer Lullaby.mp3",
+        },
+      ];
+      let currentTrack = 0;
+
+      const bgm = document.getElementById("bgm");
+      const playBtn = document.getElementById("play-btn");
+      const nextBtn = document.getElementById("next-btn");
+      const prevBtn = document.getElementById("prev-btn");
+      const titleEl = document.getElementById("track-title");
+
+      function loadTrack(i) {
+        currentTrack = (i + tracks.length) % tracks.length;
+        bgm.src = tracks[currentTrack].file;
+        titleEl.textContent = tracks[currentTrack].title;
+      }
+      setInterval(() => {
+        localStorage.setItem("mcTrack", currentTrack);
+        localStorage.setItem("mcTime", bgm.currentTime);
+      }, 500);
+
+      function loadTrack(i) {
+        currentTrack = (i + tracks.length) % tracks.length;
+        bgm.src = tracks[currentTrack].file;
+        titleEl.textContent = tracks[currentTrack].title;
+        localStorage.setItem("mcTrack", currentTrack);
+      }
+
+      function playTrack() {
+        bgm
+          .play()
+          .then(() => {
+            playBtn.textContent = "❚❚";
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+
+      function pauseTrack() {
+        bgm.pause();
+        playBtn.textContent = "▶";
+      }
+
+      playBtn.addEventListener("click", () => {
+        if (bgm.paused) playTrack();
+        else pauseTrack();
+      });
+
+      nextBtn.addEventListener("click", () => {
+        loadTrack(currentTrack + 1);
+        playTrack();
+      });
+
+      prevBtn.addEventListener("click", () => {
+        loadTrack(currentTrack - 1);
+        playTrack();
+      });
+
+      bgm.addEventListener("ended", () => {
+        loadTrack(currentTrack + 1);
+        playTrack();
+      });
+
+      loadTrack(0);
+
+      document.addEventListener(
+        "pointerdown",
+        () => {
+          if (bgm.paused) playTrack();
+        },
+        { once: true },
+      );
+    </script>
+
+    <div class="sakura-container" id="sakura-container"></div>
+
+    <script>
+      (function () {
+        const container = document.getElementById("sakura-container");
+        const COUNT = 48;
+
+        function petal() {
+          const p = document.createElement("div");
+          p.className = "sakura-petal";
+
+          const size = 12 + Math.random() * 18;
+          const duration = 8 + Math.random() * 8;
+          const delay = Math.random() * 8;
+
+          p.style.width = size + "px";
+          p.style.height = size + "px";
+          p.style.left = Math.random() * 100 + "vw";
+          p.style.filter = `blur(${Math.random() * 1.2}px)`;
+          p.style.setProperty(
+            "--scale",
+            (0.7 + Math.random() * 0.9).toFixed(2),
+          );
+          p.style.setProperty("--drift1", Math.random() * 80 - 40 + "px");
+          p.style.setProperty("--drift2", Math.random() * 140 - 70 + "px");
+          p.style.setProperty("--drift3", Math.random() * 220 - 110 + "px");
+          p.style.animation = `sakuraFloat ${duration}s linear ${delay}s infinite`;
+
+          container.appendChild(p);
+        }
+
+        for (let i = 0; i < COUNT; i++) petal();
+      })();
     </script>
   </body>
 </html>

@@ -311,8 +311,13 @@
     <img id="spiderman" src="sm1.png" alt="Spider-Man" />
 
     <!-- Spider-Man background music -->
-    <audio id="bgm" loop autoplay>
-      <source src="" type="audio/mpeg" />
+    <audio id="bgm" loop preload="auto">
+      <source src="spiderman.mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- Jumpscare sound (preloaded) -->
+    <audio id="jumpscareSound" preload="auto">
+      <source src="undertale-chara-jumpscare.mp3" type="audio/mpeg" />
     </audio>
 
     <!-- Full-screen jumpscare -->
@@ -324,44 +329,48 @@
       const bgm = document.getElementById("bgm");
       const spiderman = document.getElementById("spiderman");
       const jumpscare = document.getElementById("jumpscare");
+      const jumpSound = document.getElementById("jumpscareSound");
 
-      const scream = new Audio("scream.mp3");
-      scream.volume = 1.0;
-      scream.play();
-
-      // Try autoplay immediately
-      bgm.play().catch(() => {
-        // If browser blocks autoplay, start on first click anywhere
-        document.addEventListener(
-          "click",
-          () => {
-            bgm.play();
-          },
-          { once: true },
-        );
-      });
+      // Start background music on first user interaction
+      document.addEventListener(
+        "click",
+        () => {
+          bgm.play().catch(() => {});
+        },
+        { once: true },
+      );
 
       spiderman.addEventListener("click", () => {
         // Stop Spider-Man music
         bgm.pause();
         bgm.currentTime = 0;
 
-        // Show jumpscare
+        // Show jumpscare immediately
         jumpscare.style.display = "flex";
 
-        // Play scream sound
-        const scream = new Audio("undertale-chara-jumpscare.mp3");
-        scream.volume = 1.0;
-        scream.play();
+        // Play jumpscare sound instantly
+        jumpSound.pause();
+        jumpSound.currentTime = 0;
+        jumpSound.play().catch(() => {});
 
-        // Hide jumpscare after 2 seconds
+        // Hide jumpscare after 2.5 seconds
         setTimeout(() => {
           jumpscare.style.display = "none";
         }, 2500);
       });
     </script>
 
+    <p style="text-align: center; font-size: 10px">
+      ⚠️ SAFETY NOTICE: Clicking on Spider-Man triggers intense jump scares and
+      sudden loud noises. Not recommended for individuals with heart conditions,
+      epilepsy, or anxiety disorders.
+    </p>
+    <br />
+
     <main>
+      <p style="text-align: center; font-size: 20px">
+        Click on spidy for a surprise!
+      </p>
       <section class="hero">
         <h1>Extras</h1>
 
@@ -502,5 +511,105 @@
     <br />
     <p></p>
     <br />
+    <audio id="bgm" loop preload="auto"></audio>
+
+    <script>
+      const tracks = ["c418.mp3", "wet-hands.mp3", "subwoofer.mp3"];
+      bgm = document.getElementById("bgm");
+
+      const savedTrack = parseInt(localStorage.getItem("mcTrack") || "0", 10);
+      const savedTime = parseFloat(localStorage.getItem("mcTime") || "0");
+
+      bgm.src = tracks[savedTrack];
+
+      document.addEventListener(
+        "pointerdown",
+        () => {
+          bgm.currentTime = savedTime;
+          bgm.play().catch(() => {});
+        },
+        { once: true },
+      );
+
+      // Keep updating the saved position
+      setInterval(() => {
+        localStorage.setItem("mcTime", bgm.currentTime);
+      }, 500);
+    </script>
+    <style>
+      .sakura-container {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 9999;
+      }
+
+      .sakura-petal {
+        position: absolute;
+        top: -10%;
+        background: url("sakura.png") no-repeat center/contain;
+        opacity: 0.95;
+        will-change: transform, opacity;
+      }
+
+      @keyframes sakuraFloat {
+        0% {
+          transform: translate3d(0, -10vh, 0) rotate(0deg) scale(var(--scale));
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.95;
+        }
+        30% {
+          transform: translate3d(var(--drift1), 30vh, 0) rotate(120deg)
+            scale(var(--scale));
+        }
+        60% {
+          transform: translate3d(var(--drift2), 65vh, 0) rotate(240deg)
+            scale(calc(var(--scale) * 1.03));
+        }
+        100% {
+          transform: translate3d(var(--drift3), 115vh, 0) rotate(360deg)
+            scale(var(--scale));
+          opacity: 0;
+        }
+      }
+    </style>
+
+    <div class="sakura-container" id="sakura-container"></div>
+
+    <script>
+      (function () {
+        const container = document.getElementById("sakura-container");
+        const COUNT = 48;
+
+        function petal() {
+          const p = document.createElement("div");
+          p.className = "sakura-petal";
+
+          const size = 12 + Math.random() * 18;
+          const duration = 8 + Math.random() * 8;
+          const delay = Math.random() * 8;
+
+          p.style.width = size + "px";
+          p.style.height = size + "px";
+          p.style.left = Math.random() * 100 + "vw";
+          p.style.filter = `blur(${Math.random() * 1.2}px)`;
+          p.style.setProperty(
+            "--scale",
+            (0.7 + Math.random() * 0.9).toFixed(2),
+          );
+          p.style.setProperty("--drift1", Math.random() * 80 - 40 + "px");
+          p.style.setProperty("--drift2", Math.random() * 140 - 70 + "px");
+          p.style.setProperty("--drift3", Math.random() * 220 - 110 + "px");
+          p.style.animation = `sakuraFloat ${duration}s linear ${delay}s infinite`;
+
+          container.appendChild(p);
+        }
+
+        for (let i = 0; i < COUNT; i++) petal();
+      })();
+    </script>
   </body>
 </html>

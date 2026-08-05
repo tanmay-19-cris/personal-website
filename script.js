@@ -1,17 +1,10 @@
 (function script() {
 const nekoEl = document.createElement("div");
 
-
 let nekoPosX = 32;
 let nekoPosY = 32;
 let mousePosX = 0;
 let mousePosY = 0;
-
-// Food trap
-let foodActive = false;
-let foodX = 0;
-let foodY = 0;
-let foodEl = null;
 
 let frameCount = 0;
 let idleTime = 0;
@@ -51,31 +44,8 @@ function create() {
     document.body.appendChild(nekoEl);
 
     document.addEventListener("mousemove", function (event) {
-        if (!foodActive) {
-            mousePosX = event.clientX;
-            mousePosY = event.clientY;
-        }
-    });
-
-    document.addEventListener("click", function (event) {
-        if (foodEl) {
-            foodEl.remove();
-        }
-
-        foodEl = document.createElement("div");
-        foodEl.textContent = "🐟";
-        foodEl.style.position = "fixed";
-        foodEl.style.left = (event.clientX - 8) + "px";
-        foodEl.style.top = (event.clientY - 8) + "px";
-        foodEl.style.fontSize = "20px";
-        foodEl.style.pointerEvents = "none";
-        foodEl.style.zIndex = "99998";
-        document.body.appendChild(foodEl);
-
-        foodX = event.clientX;
-        foodY = event.clientY;
-        foodActive = true;
-
+        mousePosX = event.clientX;
+        mousePosY = event.clientY;
     });
 
     window.scriptInterval = setInterval(frame, 100);
@@ -124,31 +94,14 @@ function idle() {
 function frame() {
     frameCount += 1;
 
-    const targetX = foodActive ? foodX : mousePosX;
-    const targetY = foodActive ? foodY : mousePosY;
-
-    const diffX = nekoPosX - targetX;
-    const diffY = nekoPosY - targetY;
+    const diffX = nekoPosX - mousePosX;
+    const diffY = nekoPosY - mousePosY;
     const distance = Math.sqrt(diffX * diffX + diffY * diffY);
 
-if (distance < nekoSpeed || distance < 24) {
-
-    // Cat reached the food
-    if (foodActive) {
-        foodActive = false;
-
-        // Keep the fish for 5 seconds AFTER arriving
-        setTimeout(function () {
-            if (foodEl) {
-                foodEl.remove();
-                foodEl = null;
-            }
-        }, 5000);
+    if (distance < nekoSpeed || distance < 24) {
+        idle();
+        return;
     }
-
-    idle();
-    return;
-}
 
     idleAnimation = null;
     idleAnimationFrame = 0;
@@ -176,6 +129,5 @@ if (distance < nekoSpeed || distance < 24) {
 }
 
 create();
-
 
 })();

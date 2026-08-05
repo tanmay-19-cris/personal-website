@@ -204,5 +204,80 @@
     </main>
 
     <script src="script.js"></script>
+    <style>
+      .sakura-container {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 9999;
+      }
+
+      .sakura-petal {
+        position: absolute;
+        top: -10%;
+        background: url("sakura.png") no-repeat center/contain;
+        opacity: 0.95;
+        will-change: transform, opacity;
+      }
+
+      @keyframes sakuraFloat {
+        0% {
+          transform: translate3d(0, -10vh, 0) rotate(0deg) scale(var(--scale));
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.95;
+        }
+        30% {
+          transform: translate3d(var(--drift1), 30vh, 0) rotate(120deg)
+            scale(var(--scale));
+        }
+        60% {
+          transform: translate3d(var(--drift2), 65vh, 0) rotate(240deg)
+            scale(calc(var(--scale) * 1.03));
+        }
+        100% {
+          transform: translate3d(var(--drift3), 115vh, 0) rotate(360deg)
+            scale(var(--scale));
+          opacity: 0;
+        }
+      }
+    </style>
+
+    <div class="sakura-container" id="sakura-container"></div>
+
+    <script>
+      (function () {
+        const container = document.getElementById("sakura-container");
+        const COUNT = 48;
+
+        function petal() {
+          const p = document.createElement("div");
+          p.className = "sakura-petal";
+
+          const size = 12 + Math.random() * 18;
+          const duration = 8 + Math.random() * 8;
+          const delay = Math.random() * 8;
+
+          p.style.width = size + "px";
+          p.style.height = size + "px";
+          p.style.left = Math.random() * 100 + "vw";
+          p.style.filter = `blur(${Math.random() * 1.2}px)`;
+          p.style.setProperty(
+            "--scale",
+            (0.7 + Math.random() * 0.9).toFixed(2),
+          );
+          p.style.setProperty("--drift1", Math.random() * 80 - 40 + "px");
+          p.style.setProperty("--drift2", Math.random() * 140 - 70 + "px");
+          p.style.setProperty("--drift3", Math.random() * 220 - 110 + "px");
+          p.style.animation = `sakuraFloat ${duration}s linear ${delay}s infinite`;
+
+          container.appendChild(p);
+        }
+
+        for (let i = 0; i < COUNT; i++) petal();
+      })();
+    </script>
   </body>
 </html>

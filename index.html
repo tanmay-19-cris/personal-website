@@ -419,6 +419,23 @@
     </main>
 
     <!-- Scripts -->
+    <!-- secret scripts -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const spiderman = document.getElementById("spiderman");
+
+        let clickCount = 0;
+
+        spiderman.addEventListener("click", () => {
+          clickCount++;
+
+          if (clickCount === 3) {
+            window.location.href = "secret.html";
+          }
+        });
+      });
+    </script>
+
     <!-- music player scripts -->
     <script>
       const tracks = [

@@ -418,7 +418,188 @@
       <audio id="bgm" preload="auto"></audio>
     </main>
 
+    <!--terminal--->
+    <button id="terminal-btn" class="terminal-btn">>_</button>
+
+    <div id="terminal-overlay" class="terminal-overlay">
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <span>THUNDER TERMINAL v1.0</span>
+          <button id="close-terminal">✕</button>
+        </div>
+
+        <div id="terminal-output" class="terminal-output">
+          <p><span class="green">THUNDER OS v1.0</span></p>
+          <p>Type <span class="green">help</span> to see available commands.</p>
+          <br />
+        </div>
+
+        <div class="terminal-input-line">
+          <span class="green">tanmay@thunder:~$</span>
+          <input type="text" id="terminal-input" autocomplete="off" />
+        </div>
+      </div>
+    </div>
+
     <!-- Scripts -->
+    <!---terminal script-->
+    <script>
+      const terminalBtn = document.getElementById("terminal-btn");
+      const terminalOverlay = document.getElementById("terminal-overlay");
+      const closeTerminal = document.getElementById("close-terminal");
+      const terminalInput = document.getElementById("terminal-input");
+      const terminalOutput = document.getElementById("terminal-output");
+
+      terminalBtn.addEventListener("click", () => {
+        terminalOverlay.style.display = "flex";
+        terminalInput.focus();
+      });
+
+      closeTerminal.addEventListener("click", () => {
+        terminalOverlay.style.display = "none";
+      });
+
+      const commands = {
+        help: `
+Available commands:
+- help
+- about
+- projects
+- skills
+- install <package>
+- clear
+- exit
+  `,
+
+        about: `
+Tanmay
+Student | Web Developer | Minecraft Addict
+Creator of THUNDER.
+  `,
+
+        projects: `
+Projects:
+- Thunder Portfolio
+- Minecraft Tools
+- Mini Games
+- Random Internet Experiments
+  `,
+
+        skills: `
+HTML
+CSS
+JavaScript
+Vercel
+GitHub
+  `,
+      };
+
+      function fakeInstall(packageName) {
+        const lineId = "install-" + Date.now();
+
+        terminalOutput.innerHTML += `
+    <div>Installing <span class="green">${packageName}</span>...</div>
+    <div id="${lineId}">[                    ] 0%</div>
+  `;
+
+        const line = document.getElementById(lineId);
+        let progress = 0;
+
+        const interval = setInterval(() => {
+          progress += Math.floor(Math.random() * 10) + 5;
+          if (progress > 100) progress = 100;
+
+          const bars = Math.floor(progress / 5);
+          line.textContent = `[${"#".repeat(bars)}${" ".repeat(20 - bars)}] ${progress}%`;
+
+          terminalOutput.scrollTop = terminalOutput.scrollHeight;
+
+          if (progress === 100) {
+            clearInterval(interval);
+
+            let message = `Successfully installed ${packageName}.`;
+
+            switch (packageName.toLowerCase()) {
+              case "minecraft":
+                message =
+                  "Minecraft installed. Creepers are already waiting outside.";
+                break;
+              case "vscode":
+                message = "VS Code installed. Time to write 500 lines of CSS.";
+                break;
+              case "thunder":
+                message = "THUNDER OS installed. You are now 3% cooler.";
+                break;
+              case "fortnite":
+                message = "Fortnite installed. Please lower your volume.";
+                break;
+              case "chrome":
+                message = "Chrome installed. RAM usage increased by 97%.";
+                break;
+              case "virus.exe":
+                message = "SYSTEM COMPROMISED... just kidding.";
+                break;
+            }
+
+            terminalOutput.innerHTML += `
+        <div class="green">${message}</div>
+        <br>
+      `;
+
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+          }
+        }, 120);
+      }
+
+      terminalInput.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter") return;
+
+        const cmd = terminalInput.value.trim();
+
+        terminalOutput.innerHTML += `
+    <div><span class="green">tanmay@thunder:~$</span> ${cmd}</div>
+  `;
+
+        if (cmd.toLowerCase().startsWith("install ")) {
+          const pkg = cmd.slice(8).trim();
+
+          if (pkg) {
+            fakeInstall(pkg);
+          } else {
+            terminalOutput.innerHTML += `<div>Usage: install <package></div>`;
+          }
+
+          terminalInput.value = "";
+          terminalOutput.scrollTop = terminalOutput.scrollHeight;
+          return;
+        }
+
+        if (cmd.toLowerCase() === "clear") {
+          terminalOutput.innerHTML = "";
+          terminalInput.value = "";
+          return;
+        }
+
+        if (cmd.toLowerCase() === "exit") {
+          terminalOverlay.style.display = "none";
+          terminalInput.value = "";
+          return;
+        }
+
+        if (commands[cmd.toLowerCase()]) {
+          terminalOutput.innerHTML += `<pre>${commands[cmd.toLowerCase()]}</pre>`;
+        } else if (cmd !== "") {
+          terminalOutput.innerHTML += `
+      <div>Command not found: ${cmd}</div>
+      <div>Type <span class="green">help</span> to see available commands.</div>
+    `;
+        }
+
+        terminalInput.value = "";
+        terminalOutput.scrollTop = terminalOutput.scrollHeight;
+      });
+    </script>
+
     <!-- secret scripts -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {

@@ -16,6 +16,29 @@
       rel="stylesheet"
     />
 
+    <meta name="theme-color" content="#0b0b0b" id="theme-color" />
+    <!-- Theme Toggle -->
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+      <span class="icon moon">🌙</span>
+      <span class="icon sun">☀️</span>
+    </button>
+
+    <button id="hackBtn" class="hack-btn">ENTER HACK MODE</button>
+    <div id="matrix" class="matrix"></div>
+    <div id="hackOverlay" class="hack-overlay">
+      <div class="hack-terminal">
+        <div id="hackText"></div>
+      </div>
+    </div>
+    <a
+      href="vault.html"
+      id="vaultBtn"
+      class="hack-btn"
+      style="left: 190px; display: none"
+    >
+      OPEN VAULT
+    </a>
+
     <title>Thunder | Portfolio</title>
     ```
   </head>
@@ -442,6 +465,134 @@
     </div>
 
     <!-- Scripts -->
+    <!---hcak mdoe--->
+    <script>
+      const vaultBtn = document.getElementById("vaultBtn");
+      const hackBtn = document.getElementById("hackBtn");
+      const hackOverlay = document.getElementById("hackOverlay");
+      const hackText = document.getElementById("hackText");
+      const matrix = document.getElementById("matrix");
+
+      const hackLines = [
+        "[BOOT] THUNDER SECURITY INTERFACE",
+        "[SYS] Loading kernel modules...",
+        "[NET] Connecting to encrypted node...",
+        "[AUTH] Bypassing firewall...",
+        "[AUTH] Injecting packets...",
+        "[CRYPTO] Decrypting vault...",
+        "[SCAN] Searching hidden directories...",
+        "[OK] Root access obtained",
+        "",
+        "ACCESS GRANTED",
+      ];
+
+      function createMatrix() {
+        matrix.innerHTML = "";
+        const chars = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&@";
+        const columns = Math.floor(window.innerWidth / 18);
+
+        for (let i = 0; i < columns; i++) {
+          const col = document.createElement("div");
+          col.className = "matrix-column";
+          col.style.left = `${i * 18}px`;
+          col.style.animationDuration = `${6 + Math.random() * 6}s`;
+          col.style.animationDelay = `${Math.random() * 2}s`;
+
+          let text = "";
+          for (let j = 0; j < 120; j++) {
+            text += chars[Math.floor(Math.random() * chars.length)] + "\\n";
+          }
+
+          col.textContent = text;
+          matrix.appendChild(col);
+        }
+      }
+
+      window.addEventListener("resize", () => {
+        if (document.body.classList.contains("hack-mode")) {
+          createMatrix();
+        }
+      });
+
+      async function typeLine(line) {
+        return new Promise((resolve) => {
+          let i = 0;
+          const row = document.createElement("div");
+          hackText.appendChild(row);
+
+          const timer = setInterval(() => {
+            row.textContent += line.charAt(i);
+            i++;
+
+            if (i >= line.length) {
+              clearInterval(timer);
+              hackText.appendChild(document.createElement("br"));
+              hackText.scrollTop = hackText.scrollHeight;
+              setTimeout(resolve, 180);
+            }
+          }, 28);
+        });
+      }
+
+      hackBtn.addEventListener("click", async () => {
+        // TURN OFF
+        vaultBtn.style.display = "none";
+        localStorage.removeItem("hackMode");
+        if (document.body.classList.contains("hack-mode")) {
+          document.body.classList.remove("hack-mode");
+          document.body.classList.remove("glitch");
+          matrix.style.opacity = "0";
+          hackOverlay.style.display = "none";
+          hackText.innerHTML = "";
+          hackBtn.textContent = "ENTER HACK MODE";
+          return;
+        }
+
+        // TURN ON
+        vaultBtn.style.display = "block";
+        localStorage.setItem("hackMode", "true");
+        document.body.classList.add("glitch");
+
+        setTimeout(async () => {
+          document.body.classList.remove("glitch");
+          document.body.classList.add("hack-mode");
+
+          createMatrix();
+          matrix.style.opacity = "1";
+
+          hackOverlay.style.display = "flex";
+          hackText.innerHTML = "";
+
+          for (const line of hackLines) {
+            await typeLine(line);
+          }
+
+          setTimeout(() => {
+            hackOverlay.style.display = "none";
+          }, 1200);
+
+          hackBtn.textContent = "EXIT HACK MODE";
+        }, 800);
+      });
+    </script>
+
+    <!--Theme-->
+    <script>
+      const toggle = document.getElementById("themeToggle");
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "light") {
+        document.body.classList.add("light");
+      }
+      toggle.addEventListener("click", () => {
+        document.body.classList.toggle("light");
+        if (document.body.classList.contains("light")) {
+          localStorage.setItem("theme", "light");
+        } else {
+          localStorage.setItem("theme", "dark");
+        }
+      });
+    </script>
+
     <!---terminal script-->
     <script>
       const terminalBtn = document.getElementById("terminal-btn");

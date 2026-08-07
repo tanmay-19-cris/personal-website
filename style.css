@@ -705,3 +705,291 @@ main{
 .green {
   color: #00ff88;
 }
+
+/*Theme*/
+
+* {
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+:root{
+  --bg:#0b0b0b;
+  --bg2:#000;
+  --card:#151515;
+  --text:#f5f5f5;
+  --muted:#d7d7d7;
+  --accent:#b74b4b;
+  --border:rgba(255,255,255,.12);
+}
+
+body.light{
+  --bg:#f1eee8;
+  --bg2:#faf8f4;
+  --card:#ffffff;
+  --text:#1a1a1a;
+  --muted:#5c5c5c;
+  --border:rgba(0,0,0,.08);
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  transition: background .35s ease, color .35s ease;
+}
+
+header,
+.intro{
+  background:var(--bg2);
+  border-color:var(--border);
+}
+
+main,
+.about,
+.experience,
+.projects,
+.games,
+.extras,
+.section,
+.project,
+.game{
+  background:transparent;
+}
+
+h1,h2,h3,h4,h5,h6,
+p,span,li,div{
+  color:var(--text);
+}
+
+.hero-content p,
+.section p,
+.project p,
+.game p,
+.about-hero p{
+  color:var(--muted);
+}
+
+nav a{
+  color:var(--text);
+}
+
+nav a:hover,
+nav a.active{
+  color:var(--accent);
+}
+
+.project-image,
+.game-image,
+.gallery img,
+.skill-bar{
+  border-color:var(--border);
+}
+
+.social-icons a{
+  color:var(--text);
+  border-color:rgba(183,75,75,.35);
+}
+
+.btn,
+.play-btn{
+  color:var(--accent);
+  border-color:var(--accent);
+}
+
+.btn:hover,
+.play-btn:hover{
+  background:var(--accent);
+  color:#000;
+}
+
+#track-title,
+.progress-container span{
+  color:var(--text);
+}
+
+.theme-toggle{
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  width:90px;
+  height:46px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:var(--card);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 12px;
+  transition:background .35s ease, border-color .35s ease;
+  z-index:9999;
+}
+
+.theme-toggle::before{
+  content:'';
+  position:absolute;
+  left:4px;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:var(--accent);
+  transition:transform .35s ease;
+}
+
+body.light .theme-toggle::before{
+  transform:translateX(44px);
+}
+
+.icon{
+  position:relative;
+  z-index:1;
+  font-size:18px;
+  user-select:none;
+}
+
+/*hackmode*/
+
+.hack-btn{
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  padding: 12px 22px;
+  border: 1px solid #b74b4b;
+  background: #0b0b0b;
+  color: #b74b4b;
+  font-family: "Share Tech Mono", monospace;
+  border-radius: 999px;
+  cursor: pointer;
+  z-index: 10001;
+  transition: all .3s ease;
+}
+
+.hack-btn:hover{
+  background: #b74b4b;
+  color: #000;
+  box-shadow: 0 0 20px rgba(183,75,75,.6);
+}
+
+.matrix{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .6s ease;
+  z-index:9990;
+}
+
+.matrix-column{
+  position:absolute;
+  top:-100%;
+  color:#ff3b3b;
+  font-family:"Share Tech Mono", monospace;
+  font-size:14px;
+  line-height:14px;
+  white-space:pre;
+  animation:matrixFall linear infinite;
+}
+
+@keyframes matrixFall{
+  from{ transform:translateY(-100%); }
+  to{ transform:translateY(220vh); }
+}
+
+.hack-overlay{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:10002;
+}
+
+.hack-terminal{
+  width:min(900px,90vw);
+  height:min(520px,72vh);
+  border:2px solid #ff3b3b;
+  background:#050505;
+  box-shadow:0 0 30px rgba(255,59,59,.35);
+  padding:24px;
+  overflow:auto;
+}
+
+#hackText{
+  color:#ff4d4d;
+  font-family:"Share Tech Mono", monospace;
+  font-size:18px;
+  line-height:1.6;
+}
+
+body.hack-mode{
+  --bg:#000000;
+  --bg2:#050505;
+  --card:#0b0b0b;
+  --text:#ff4d4d;
+  --muted:#d84a4a;
+  --accent:#ff3b3b;
+  --border:rgba(255,59,59,.28);
+}
+
+body.hack-mode header{
+  border-right:1px solid rgba(255,59,59,.28);
+}
+
+body.hack-mode .profile-img,
+body.hack-mode .project-image,
+body.hack-mode .game-image,
+body.hack-mode .gallery img{
+  border-color:#ff3b3b;
+  box-shadow:0 0 20px rgba(255,59,59,.25);
+}
+
+body.hack-mode .btn,
+body.hack-mode .play-btn{
+  border-color:#ff3b3b;
+  color:#ff3b3b;
+}
+
+body.hack-mode .btn:hover,
+body.hack-mode .play-btn:hover{
+  background:#ff3b3b;
+  color:#000;
+}
+
+body.hack-mode .social-icons a{
+  border-color:rgba(255,59,59,.4);
+}
+
+body.hack-mode::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,.03) 0px,
+      rgba(255,255,255,.03) 1px,
+      transparent 2px,
+      transparent 4px
+    );
+  opacity:.18;
+  z-index:9989;
+}
+
+body.glitch{
+  animation:glitchFlash .12s steps(2) 8;
+}
+
+@keyframes glitchFlash{
+  0%{ filter:none; transform:none; }
+  25%{ filter:contrast(1.4) saturate(1.2); transform:translate(2px,-1px); }
+  50%{ filter:hue-rotate(-20deg); transform:translate(-2px,1px); }
+  75%{ filter:invert(1); transform:translate(1px,2px); }
+  100%{ filter:none; transform:none; }
+}

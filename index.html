@@ -419,6 +419,42 @@
     </main>
 
     <!-- Scripts -->
+
+    <!--Secret ahh script-->
+    <script>
+      let secretCode = "";
+      const secretWord = "secret";
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key.length !== 1) return;
+
+        const tag = document.activeElement.tagName;
+        if (
+          tag === "INPUT" ||
+          tag === "TEXTAREA" ||
+          document.activeElement.isContentEditable
+        ) {
+          return;
+        }
+
+        e.preventDefault();
+
+        secretCode += e.key.toLowerCase();
+
+        if (secretCode.length > secretWord.length) {
+          secretCode = secretCode.slice(-secretWord.length);
+        }
+
+        if (secretCode === secretWord) {
+          secretCode = "";
+
+          setTimeout(() => {
+            window.location.href = "secret.html";
+          }, 150);
+        }
+      });
+    </script>
+
     <!--theme icon-->
     <script>
       document.addEventListener("DOMContentLoaded", () => {

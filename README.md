@@ -37,6 +37,16 @@ My goal is to improve my web dev as I learn more. Im using it as a place to expe
     MDN Web Docs
     HTML, CSS, and JS
 
+## Contributing
+
+To run this project locally, first clone the repo!
+
+```
+git clone https://github.com/tanmay-19-cris/personal-website.git
+```
+
+Change the directory to project folder and Run a simple HTML live server.. like VSCODE'S LIVE SERVER :D
+
 ## AI Usage
 
     I messed up css like... navbar was overlapping on my intro animation.

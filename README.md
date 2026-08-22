@@ -49,4 +49,4 @@ Change the directory to project folder and Run a simple HTML live server.. like 
 
 ## AI Usage
 
-    I messed up css like... navbar was overlapping on my intro animation.
+    I messed up css like... navbar was overlapping on my intro animation. And ik that AI hours has more than 30% but i didn't use AI more than 30%. I didn't know that copy pasting and AI code stuff exists and i used AI for just TEST of MInigames page and i deleted that code too. Still my project got rejected in beest and treasure hunt, I told  reviewer the real reason. I saw AI hours chart in my brother's laptop and then i realise that AI chart thing. My brother is a reviewer and he knows i didn't use AI. He's slack is @chish.
